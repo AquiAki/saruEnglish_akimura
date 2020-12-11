@@ -1,99 +1,153 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState, } from "react";
-import { StyleSheet, Text, View,TouchableOpacity,Button, } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export function LevelScreen() {
   const navigation = useNavigation();
-  const toHome = () => {                  // ここがtoHomeではなく、レベルチェックのスコアで各コースへ推移する感じにする
-    navigation.navigate("Home");
-  };  
 
-  // const [questionText,setQuestionText] = usestate()
+  const [currentQuestion, setcurrentQuestion] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
 
-  // const [loading,setLoading] = useState(false);
-  // const [questions,setQuestions] = useState([]);
-  // const [userAnsewers,setUserAnswers] = useState([]);
-  // const [score, setScore] = useState(0);
-  // const [gameOver, setGameOver] = useState(true);
-  // const [TOTAL_QUESTIONS] = useRef(null);
+  const handleAnswerButtonClick = (isCorrect: boolean) => {
+    if (isCorrect === true) {
+      // alert("this answer is correct")
+      setScore(score + 1);
+    }
 
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion < questions.length) {
+      setcurrentQuestion(nextQuestion);
+    } else {
+      // setShowScore(true)
+      alert(`レベルチェックは終わりです。
+    お疲れ様でした`);
+    checkLevel();
+    }
+  };
 
-const [currentQuestion, setcurrentQuestion] = useState(0);
-const [showScore, setShowScore] = useState(false);
-const [score, setScore] = useState(0);
+  const checkLevel = () => {
+    if (score === 10){
+      navigation.navigate("Maestro");
+    } else if (score <= 8){
+      navigation.navigate("Star");
+    } else if (score <= 6){
+      navigation.navigate("Trainee");
+    } else if (score <= 4){
+      navigation.navigate("Young");
+    } else {
+      navigation.navigate("Baby");
+    }
+  };
 
+  const questions = [
+    {
+      questionText: "temple",
+      answerOptions: [
+        { answerText: "のどぼとけ", isCorrect: false },
+        { answerText: "鼠径部", isCorrect: false },
+        { answerText: "こめかみ", isCorrect: true },
+        { answerText: "うなじ", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "bruise",
+      answerOptions: [
+        { answerText: "打撲、打ち身", isCorrect: true },
+        { answerText: "すり傷", isCorrect: false },
+        { answerText: "切り傷", isCorrect: false },
+        { answerText: "捻挫", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "faint / pass out",
+      answerOptions: [
+        { answerText: "気分が落ち込む", isCorrect: true },
+        { answerText: "失神する", isCorrect: true },
+        { answerText: "興奮する", isCorrect: false },
+        { answerText: "いらいらする", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "obesity",
+      answerOptions: [
+        { answerText: "のぼせ、ほてり", isCorrect: false },
+        { answerText: "汗がでる", isCorrect: false },
+        { answerText: "冷え", isCorrect: false },
+        { answerText: "肥満", isCorrect: true },
+      ],
+    },
+    {
+      questionText: "ilium",
+      answerOptions: [
+        { answerText: "仙骨", isCorrect: false },
+        { answerText: "骨盤", isCorrect: false },
+        { answerText: "恥骨", isCorrect: false },
+        { answerText: "腸骨", isCorrect: true },
+      ],
+    },
+    {
+      questionText: "gallbladder",
+      answerOptions: [
+        { answerText: "胆のう", isCorrect: true },
+        { answerText: "胃", isCorrect: false },
+        { answerText: "小腸", isCorrect: false },
+        { answerText: "盲腸", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "peripheral nerve",
+      answerOptions: [
+        { answerText: "自律神経", isCorrect: false },
+        { answerText: "副交感神経", isCorrect: false },
+        { answerText: "交感神経", isCorrect: false },
+        { answerText: "末梢神経", isCorrect: true },
+      ],
+    },
+    {
+      questionText: "thalamus",
+      answerOptions: [
+        { answerText: "大脳", isCorrect: false },
+        { answerText: "視床", isCorrect: true },
+        { answerText: "中脳", isCorrect: false },
+        { answerText: "延髄", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "pupil",
+      answerOptions: [
+        { answerText: "血管", isCorrect: false },
+        { answerText: "鼓膜", isCorrect: false },
+        { answerText: "瞳孔", isCorrect: true },
+        { answerText: "水晶体", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "thyroid",
+      answerOptions: [
+        { answerText: "膵臓", isCorrect: false },
+        { answerText: "胸腺", isCorrect: false },
+        { answerText: "甲状腺", isCorrect: true },
+        { answerText: "副腎", isCorrect: false },
+      ],
+    },
+  ];
 
-const handleAnswerButtonClick = (isCorrect:boolean) => {
-
-  if(isCorrect === true){
-    // alert("this answer is correct")
-    setScore(score+1);
-  }
-
-  const nextQuestion = currentQuestion + 1 ;
-  if(nextQuestion < questions.length){
-    setcurrentQuestion(nextQuestion);
-  }else{
-    // setShowScore(true)
-    alert(`レベルチェックは終わりです。
-    お疲れ様でした`)
-  }
-  
-  
-}
-
-
-const questions = 
-  
-  [
-  {
-    questionText: "temple",
-    answerOptions: [
-      { answerText: "のどぼとけ", isCorrect: false },
-      { answerText: "鼠径部", isCorrect: false },
-      { answerText: "こめかみ", isCorrect: true },
-      { answerText: "うなじ", isCorrect: false },
-    ],
-  },
-  {
-    questionText: "bruise",
-    answerOptions: [
-      { answerText: "打撲、打ち身", isCorrect: true },
-      { answerText: "すり傷", isCorrect: false },
-      { answerText: "切り傷", isCorrect: false },
-      { answerText: "捻挫", isCorrect: false },
-    ],
-  },
-  {
-    questionText: "faint / pass out",
-    answerOptions: [
-      { answerText: "気分が落ち込む", isCorrect: true },
-      { answerText: "失神する", isCorrect: true },
-      { answerText: "興奮する", isCorrect: false },
-      { answerText: "いらいらする", isCorrect: false },
-    ],
-  },
-  {
-    questionText: "obesity",
-    answerOptions: [
-      { answerText: "のぼせ、ほてり", isCorrect: false },
-      { answerText: "汗がでる", isCorrect: false },
-      { answerText: "冷え", isCorrect: false },
-      { answerText: "肥満", isCorrect: true },
-    ],
-  },
-];
-
-
-// {questions[currentQuestion].answerOptions.map((answerOption) => <Text>( {answerOption.answerText}</Text>))}
-
+  // {questions[currentQuestion].answerOptions.map((answerOption) => <Text>( {answerOption.answerText}</Text>))}
 
   return (
     <View style={styles.container}>
-      <Text>レベルチェック : {currentQuestion + 1}問目</Text>
+      <Text style={styles.title}>
+        レベルチェック : {currentQuestion + 1}問目
+        {"\n"}
+        {"\n"}
+      </Text>
 
-      <Text>{questions[currentQuestion].questionText}</Text>
+      <Text style={styles.question}>
+        {questions[currentQuestion].questionText}
+        {"\n"}
+      </Text>
 
       <TouchableOpacity
         onPress={() => {
@@ -102,7 +156,9 @@ const questions =
           );
         }}
       >
-        <Text>{questions[currentQuestion].answerOptions[0].answerText}</Text>
+        <Text style={styles.answer}>
+          {questions[currentQuestion].answerOptions[0].answerText}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -112,7 +168,9 @@ const questions =
           );
         }}
       >
-        <Text>{questions[currentQuestion].answerOptions[1].answerText}</Text>
+        <Text style={styles.answer}>
+          {questions[currentQuestion].answerOptions[1].answerText}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -122,7 +180,9 @@ const questions =
           );
         }}
       >
-        <Text>{questions[currentQuestion].answerOptions[2].answerText}</Text>
+        <Text style={styles.answer}>
+          {questions[currentQuestion].answerOptions[2].answerText}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -132,21 +192,54 @@ const questions =
           );
         }}
       >
-        <Text>{questions[currentQuestion].answerOptions[3].answerText}</Text>
+        <Text style={styles.answer}>
+          {questions[currentQuestion].answerOptions[3].answerText}
+        </Text>
       </TouchableOpacity>
 
-      <Text>Score : {score}</Text>
+      <Text>
+        {"\n"}
+        {"\n"}
+        {"\n"}
+        Score : {score} / {currentQuestion + 1}
+      </Text>
 
       <StatusBar style="auto" />
     </View>
-  ); 
+  );
 }
 
-const styles = StyleSheet.create({
+
+  const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },
+  title: {
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  question: {
+    fontSize: 45,
+    color: "black",
+  },
+  answer: {
+    padding: 1,
+    margin: 30,
+    fontSize: 20,
+    borderWidth:3,
+    borderRadius:10,
+    backgroundColor: "white",
+    width: 200,
+    textAlign: "center",
+  },
+  score: {
+    fontSize: 25,
+  },
+  botton: {
+    fontSize: 50,
+  },
 });
+
