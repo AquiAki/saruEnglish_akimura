@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 //navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,7 +14,6 @@ import {
   BabyTestScreen,
   BabyDiseaseScreen,
   BabyOtherScreen,
-
   YoungScreen,
   YoungQuizScreen,
   YoungVocScreen,
@@ -38,7 +37,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Baby">
+      <Stack.Navigator initialRouteName="Maestro">
         <Stack.Screen
           name="Baby"
           component={BabyScreen}
@@ -151,13 +150,14 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );}
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   Button,
+  ScrollView
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
@@ -29,28 +30,29 @@ export function BabyOtherScreen() {
   };
 
   const [currentIndex, setcurrentIndex] = useState(0);
-  const bodyList = [
-    {
-      courseText: "ベイビーコース【身体編】",
 
-      en: "eyebrow",
-      ja: "眉毛",
-      pronounce: require("../../assets/sounds/39574740601.mp3"),
+  const otherList = [
+    {
+      courseText: "ベイビーコース【その他編】",
+
+      en: "height",
+      ja: "身長",
+      pronounce: require("../../assets/sounds/39574754540.mp3"),
     },
     {
-      en: "hair",
-      ja: "髪",
-      pronounce: require("../../assets/sounds/39574744206.mp3"),
+      en: "weight",
+      ja: "体重",
+      pronounce: require("../../assets/sounds/39574754543.mp3"),
     },
     {
-      en: "shoulder",
-      ja: "肩",
-      pronounce: require("../../assets/sounds/39574744545.mp3"),
+      en: "pulse",
+      ja: "脈拍",
+      pronounce: require("../../assets/sounds/39574754549.mp3"),
     },
     {
-      en: "stomach",
-      ja: "お腹",
-      pronounce: require("../../assets/sounds/39574744549.mp3"),
+      en: "sleep",
+      ja: "睡眠",
+      pronounce: require("../../assets/sounds/39574754564.mp3"),
     },
     {
       en: "knee",
@@ -74,37 +76,6 @@ export function BabyOtherScreen() {
     },
   ];
 
-  const symptomsList = [
-    {
-      courseText: "ベイビーコース【症状編】",
-
-      en: "feel sluggish / feel run-down",
-      ja: "体がだるい",
-      pronounce: require("../../assets/sounds/39574744948.mp3"),
-      pronounce1: require("../../assets/sounds/39574744962.mp3"),
-    },
-    {
-      en: "",
-      ja: "",
-      pronounce: require("../../assets/sounds/39574740601.mp3"),
-    },
-    {
-      en: "",
-      ja: "",
-      pronounce: require("../../assets/sounds/39574740601.mp3"),
-    },
-  ];
-
-  //  const playSound = async () => {
-  //    try {
-  //      const sound = new Audio.Sound();
-  //      const soundAsset = Asset.fromModule(require("./assets/39574740601.mp3"));
-  //      await sound.loadAsync(soundAsset);
-
-  //    } catch (error) {
-  //      alert(error);
-  //    }
-  //  };
 
   const [isReady, setIsReady] = useState(false);
   const [sound1, setSound1] = useState<Audio.Sound>();
@@ -122,14 +93,9 @@ export function BabyOtherScreen() {
     try {
       // サウンドを読み込む
       const newSound1 = new Audio.Sound();
-      const sound1Asset = await Asset.fromModule(bodyList[index].pronounce);
-      const sound2Asset = await Asset.fromModule(symptomsList[index].pronounce);
-      const sound3Asset = await Asset.fromModule(
-        symptomsList[index].pronounce1
-      );
+      const sound1Asset = await Asset.fromModule(otherList[index].pronounce);
+
       await newSound1.loadAsync(sound1Asset);
-      await newSound1.loadAsync(sound2Asset);
-      await newSound1.loadAsync(sound3Asset);
 
       newSound1.playAsync();
 
@@ -142,35 +108,39 @@ export function BabyOtherScreen() {
 
   return (
     <SafeAreaView>
-      <View style={styles.container}>
-        <Button
-          title="Back"
-          onPress={() => {
-            toBaby();
-          }}
-        />
-        <Text style={styles.title}>{bodyList[0].courseText}</Text>
-        <FlatList
-          data={bodyList}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={(item) => (
-            <View>
-              <Text style={styles.item}>
-                {item.item.en} : {item.item.ja}
-              </Text>
-              <FAB
-                style={styles.addButton}
-                icon="play-circle"
-                onPress={() => {
-                  playSound(item.index);
-                }}
-              />
-            </View>
-          )}
-        />
+      <ScrollView>
+        <View style={styles.container}>
+          <Button
+            title="Back"
+            onPress={() => {
+              toBaby();
+            }}
+          />
+          <Text style={styles.title}>{otherList[0].courseText}</Text>
+          <FlatList
+            data={otherList}
+            keyExtractor={(_, index) => index.toString()}
+            renderItem={(item) => (
+              <View>
+                <Text style={styles.item}>
+                  {item.item.en}
+                  {"\n"}
+                  {item.item.ja}
+                </Text>
+                <FAB
+                  style={styles.addButton}
+                  icon="play-circle"
+                  onPress={() => {
+                    playSound(item.index);
+                  }}
+                />
+              </View>
+            )}
+          />
 
-        <StatusBar style="auto" />
-      </View>
+          <StatusBar style="auto" />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar"; 
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -15,9 +15,16 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import firebase from "firebase";
 
+
+
+
+
 export function SigninScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useState<userInfos[]>([]);
+  const [level, setLevel] = useState<string>("");
+  const [users,setUsers] = useState([]);
 
   const navigation = useNavigation();
   const toHome = (user: signedInUser) => {      // ここもhomeではなく、ログイン情報をもとにユーザーがどのレベルかを判断し、そのレベルの画面に遷移する
@@ -43,7 +50,77 @@ export function SigninScreen() {
         };
         // console.log(JSON.stringify(user));
         Alert.alert("サインイン成功！", "正常にサインインできました。");
-        toHome(currentUser);
+
+        const db = firebase.firestore();
+        db.collection("users")
+          .get()
+          .then((snapshot) => {
+            const _users: any = [];
+            snapshot.forEach((doc) => {
+
+              
+              if ( doc.data().userId === currentUser.uid){
+                setLevel(doc.data().userLevel);
+                userListItems(currentUser);
+              }
+              
+              // _users.push({
+              //   userId: doc.id,
+              //   ...doc.data(),
+              // });
+
+              // setUsers(_users);
+
+            });
+          });
+
+          const userListItems = ((user : any) => {
+            if (level === "Maestro") {
+
+                navigation.navigate("Maestro");
+              } else if (level === "Star") {
+
+                navigation.navigate("Star");
+              } else if (level === "Trainee") {
+
+                navigation.navigate("Trainee");
+              } else if (level === "Young") {
+
+                navigation.navigate("Young");
+              } else {
+
+                navigation.navigate("Baby");
+              }
+          }
+        );
+
+
+
+
+        // //useEffectの中にデータベースのusersコレクション内の値を監視する処理を記述
+        //   useEffect(() => {
+        //     const users = [] as userInfos[];
+        //     //CloudFirestoreからメッセージをとってくる(常時監視)
+        //     const unsubscribe =firebase
+        //       .firestore()
+        //       .collection("users")
+        //       // .orderBy("createdAt")
+        //       .onSnapshot((snapshot) => {
+        //         snapshot.docChanges().forEach((change) => {
+        //           //変化の種類が"added"だったときの処理
+        //           if (change.type === "added") {
+        //             //今アプリにもっているmessagesに取得した差分を追加
+        //             users.unshift(change.doc.data() as userInfos);
+        //             // } else if (change.type === "removed") {
+        //             //   console.log("【modified data】");
+        //             // } else if (change.type === "modified") {
+        //             //   console.log("【deleted some data】");
+        //           }
+        //           setUserInfo(users);
+        //         });
+        //       });
+        //       return unsubscribe;  // ここで常時監視のリスナーを取り除いている
+        //   }, []);
       })
       .catch((error) => {
         console.log(error);

@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import firebase from "firebase";
 
 export function LevelScreen() {
   const navigation = useNavigation();
@@ -9,6 +10,30 @@ export function LevelScreen() {
   const [currentQuestion, setcurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+
+  //DB関連
+  const [userInfo, setUserInfo] = useState<userInfos[]>([]);
+  const [level, setLevel] = useState<string>("");
+
+  //Cloud Firestoreのusersというコレクションの中のドキュメントを参照する
+  const getMessageDocRef = async () => {
+    return await firebase.firestore().collection("users").doc();
+  };
+
+  const setUserInfos = async (level: string) => {
+    const uid = firebase.auth().currentUser?.uid;
+    if (!uid) {
+      alert("サインインしていません");
+      return;
+    }
+
+    const docRef = await getMessageDocRef();
+    const newUserInfos = {
+      userLevel: level,
+      userId: uid, //cloudのuserのuidをuserIdに変更してる
+    } as userInfos;
+    await docRef.set(newUserInfos); // 新しいuserInfosをDBに入れる
+  };
 
   const handleAnswerButtonClick = (isCorrect: boolean) => {
     if (isCorrect === true) {
@@ -23,23 +48,47 @@ export function LevelScreen() {
       // setShowScore(true)
       alert(`レベルチェックは終わりです。
     お疲れ様でした`);
-    checkLevel();
+      const level = judgeLevel(score);
+      setUserInfos(level);
+      // setLevel(level);
+      checkLevel();
     }
   };
 
   const checkLevel = () => {
-    if (score === 10){
-      navigation.navigate("Maestro");
-    } else if (score <= 8){
-      navigation.navigate("Star");
-    } else if (score <= 6){
-      navigation.navigate("Trainee");
-    } else if (score <= 4){
-      navigation.navigate("Young");
-    } else {
+    if (score <= 2 ) {
+      setLevel("Baby");
       navigation.navigate("Baby");
+    } else if (score <= 4) {
+      setLevel("Young");
+      navigation.navigate("Young");
+    } else if (score <= 6) {
+      setLevel("Trainee");
+      navigation.navigate("Trainee");
+    }else if (score <= 8) {
+      setLevel("Star");
+      navigation.navigate("Star");
+    } else {
+      setLevel("Maestro");
+      navigation.navigate("Maestro");
     }
   };
+
+
+  const judgeLevel = (score: number) => {
+    if (score <= 2) {
+      return "Baby";
+    } else if (score <= 4) {
+      return "Young";
+    } else if (score <= 6) {
+      return "Trainee";
+    } else if (score <= 8) {
+      return "Star";
+    } else {
+      return "Maestro";
+    }
+  };
+
 
   const questions = [
     {
@@ -63,7 +112,7 @@ export function LevelScreen() {
     {
       questionText: "faint / pass out",
       answerOptions: [
-        { answerText: "気分が落ち込む", isCorrect: true },
+        { answerText: "気分が落ち込む", isCorrect: false },
         { answerText: "失神する", isCorrect: true },
         { answerText: "興奮する", isCorrect: false },
         { answerText: "いらいらする", isCorrect: false },
@@ -133,6 +182,9 @@ export function LevelScreen() {
       ],
     },
   ];
+
+  
+
 
   // {questions[currentQuestion].answerOptions.map((answerOption) => <Text>( {answerOption.answerText}</Text>))}
 
@@ -209,8 +261,7 @@ export function LevelScreen() {
   );
 }
 
-
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
@@ -229,8 +280,8 @@ export function LevelScreen() {
     padding: 1,
     margin: 30,
     fontSize: 20,
-    borderWidth:3,
-    borderRadius:10,
+    borderWidth: 3,
+    borderRadius: 10,
     backgroundColor: "white",
     width: 200,
     textAlign: "center",
@@ -242,4 +293,3 @@ export function LevelScreen() {
     fontSize: 50,
   },
 });
-

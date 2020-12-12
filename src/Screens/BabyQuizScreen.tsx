@@ -11,7 +11,7 @@ export function BabyQuizScreen() {
   // };
 
   // Quizの部分
-  const [currentQuestion, setcurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -23,15 +23,19 @@ export function BabyQuizScreen() {
 
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
-      setcurrentQuestion(nextQuestion);
+      setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
 
       if (score + 1 === questions.length) {
         alert(`満点でしたので、次のステージに昇格です！`);
+        setScore(0);
+        setCurrentQuestion(0);
         navigation.navigate("Young");
       } else {
         alert(`満点を取れるまで頑張りましょう！！`);
+        setScore(0);
+        setCurrentQuestion(0);
         navigation.navigate("Baby");
       }
     }
@@ -85,6 +89,33 @@ export function BabyQuizScreen() {
     },
   ];
 
+
+  // ランダム関数だけで、重複してしまう(下の重複しないコードを書いても。原因わからず、時間あったらまたやる)
+
+  // const randomQuiz: number[] = []; // randomQuizはランダムにindexの数字を出し、その数字がかぶることもない
+  // const min = 0;
+  // const max = questions.length;
+
+  // function intRandom(min: number, max: number) {
+  //   return Math.floor(Math.random() * (max - min)) + min;
+  // }
+
+  // for (let i = min; i < max; i++) {
+  //   while (true) {
+  //   let tmp = intRandom(min, max); //questions.length 配列の要素数 5
+  //   if (!randomQuiz.includes(tmp)) {
+  //     randomQuiz.push(tmp);
+  //     break;
+  //   }
+  //   }
+  // }
+
+  // // const randomCurrentNumber = Number(randomQuiz);
+  // // setCurrentQuestion(randomQuiz[])
+
+  // const randomQuestions =
+  //   questions[Math.floor(Math.random() * questions.length)];
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
@@ -92,7 +123,10 @@ export function BabyQuizScreen() {
       </Text>
       <Text style={styles.question}>
         {"\n"}
+
         {questions[currentQuestion].questionText}
+        {/* {randomQuestions.questionText} */}
+        {/* {randomQuestions[randomQuiz].questionText} */}
         {"\n"}
       </Text>
       <TouchableOpacity

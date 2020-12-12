@@ -27,7 +27,7 @@ export function BabyScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ベイビー</Text>
-      <Text>◀ようこそ、SARUのベイビーコースへ▶</Text>
+      <Text>【ようこそ、SARUのベイビーコースへ】</Text>
       <Image
         source={babyPic}
         style={{

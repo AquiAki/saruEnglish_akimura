@@ -11,50 +11,63 @@ export function MaestroScreen() {
   };
   return (
     <View style={styles.container}>
-      <Text>マエストロ</Text>
-      <Text>ついに最終ステージ、マエストロコースへようこそ！</Text>
-      <Text>君の医療英語への熱意には驚かされるの~。おめでとう、マエストロ。</Text>
+      <Text style={styles.title}>マエストロ</Text>
+      <Text>【ついに最終ステージ、マエストロコースへようこそ！】</Text>
+      <Text style={styles.mes}>
+        君の医療英語への熱意には驚かされるの~
+        {"\n"}
+        おめでとう、マエストロ
+      </Text>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("MaestroVoc");
         }}
       >
-        <Text>マエストロコースの「身体」</Text>
+        <Text style={styles.course}>マエストロコースの「身体」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("MaestroVoc");
         }}
       >
-        <Text>マエストロコースの「症状」</Text>
+        <Text style={styles.course}>マエストロコースの「症状」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("MaestroVoc");
         }}
       >
-        <Text>マエストロコースの「検査」</Text>
+        <Text style={styles.course}>マエストロコースの「検査」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("MaestroVoc");
         }}
       >
-        <Text>マエストロコースの「病名」</Text>
+        <Text style={styles.course}>マエストロコースの「病名」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("MaestroVoc");
         }}
       >
-        <Text>マエストロコースの「その他」</Text>
+        <Text style={styles.course}>マエストロコースの「その他」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("MaestroQuiz");
         }}
       >
-        <Text>マエストロコースのレベルチェックを受ける</Text>
+        <Text style={styles.course}>
+          マエストロコースのレベルチェックを受ける
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("MaestroVoc");
+        }}
+      >
+        <Text style={styles.all}>【SARU総まとめ】</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
@@ -67,5 +80,36 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  title: {
+    color: "blue",
+    marginBottom: 50,
+    fontSize: 30,
+  },
+  mes: {
+    fontFamily: "Arial",
+    marginBottom: 100,
+  },
+  course: {
+    padding: 10,
+    marginBottom: 15,
+    borderColor: "gray",
+    borderWidth: 2,
+    borderRadius: 10,
+    width: 280,
+    alignItems: "center",
+    textAlign: "center",
+  },
+
+  all: {
+    padding: 10,
+    marginBottom: 15,
+    borderColor: "gray",
+    borderWidth: 2,
+    borderRadius: 10,
+    width: 280,
+    alignItems: "center",
+    textAlign: "center",
+    color:"red",
   },
 });

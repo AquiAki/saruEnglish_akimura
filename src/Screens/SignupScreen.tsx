@@ -11,9 +11,12 @@ import {
   SafeAreaView,
   Alert,
   StatusBar,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import firebase from "firebase";
+
+
 
 export function SignupScreen() {
   const [email, setEmail] = useState("");
@@ -35,7 +38,8 @@ export function SignupScreen() {
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
         //登録成功したらログイン画面に戻る
-        Alert.alert("登録成功！", "サインインできるようになりました");
+        // Alert.alert("登録成功！", "次はレベルチェックテストにトライしよう！");
+
         toLevel();
       })
       .catch((error) => {
@@ -47,48 +51,50 @@ export function SignupScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={styles.container}>
-        <View style={styles.titleAndFieldView}>
-          <Text style={styles.screenTitle}>
-            まずはメールアドレスとパスワードで登録
-          </Text>
-          <TextInput
-            style={styles.inputField}
-            placeholder="                       メールアドレスを入力"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            onChangeText={(email) => {
-              setEmail(email);
-            }}
-          />
-          <TextInput
-            style={styles.inputField}
-            placeholder="                       パスワードを入力"
-            keyboardType="visible-password"
-            secureTextEntry={true}
-            onChangeText={(password) => {
-              setPassword(password);
-            }}
-          />
-          <ExpoStatusBar style="auto" />
-        </View>
-        <View style={styles.includeButtons}>
-          <Button
-            title="登録する"
-            onPress={() => {
-              pressedSubmit(email, password);
-            }}
-          />
-          <View style={styles.spacer}></View>
-          {/*この行のViewを追加 */}
-          <Button
-            title="戻る"
-            onPress={() => {
-              toSignIn();
-            }}
-          />
-        </View>
-      </KeyboardAvoidingView>
+      {/* <KeyboardAvoidingView style={styles.container}> */}
+      <View style={styles.titleAndFieldView}>
+        <Text style={styles.screenTitle}>
+          まずはメールアドレスとパスワードで登録
+        </Text>
+
+        <TextInput
+          style={styles.inputField}
+          placeholder="                       メールアドレスを入力"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={(email) => {
+            setEmail(email);
+          }}
+        />
+        <TextInput
+          style={styles.inputField}
+          placeholder="                       パスワードを入力"
+          keyboardType="visible-password"
+          secureTextEntry={false}
+          onChangeText={(password) => {
+            setPassword(password);
+          }}
+        />
+
+        <ExpoStatusBar style="auto" />
+      </View>
+      <View style={styles.includeButtons}>
+        <Button
+          title="登録する"
+          onPress={() => {
+            pressedSubmit(email, password);
+          }}
+        />
+        <View style={styles.spacer}></View>
+        {/*この行のViewを追加 */}
+        <Button
+          title="戻る"
+          onPress={() => {
+            toSignIn();
+          }}
+        />
+      </View>
+      {/* </KeyboardAvoidingView> */}
     </SafeAreaView>
   );
 }

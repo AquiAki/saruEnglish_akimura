@@ -27,8 +27,8 @@ export function MaestroQuizScreen() {
     } else {
       setShowScore(true)
       if (score + 1 === questions.length) {
-        alert(`満点でしたので、次のステージに昇格です！`);
-        navigation.navigate("全てのコースをクリアしました");
+        alert("全てのコースをクリアしました。 \n おめでとうございます!!! \n マエストロコースにはこれまで学んだ医療単語が復習できる「SARU総まとめ」を用意したので、そちらで単語を忘れないように勉強しましょう！");
+        navigation.navigate("Maestro");
       } else {
         alert(`満点を取れるまで頑張りましょう！！`);
         navigation.navigate("Maestro");
