@@ -61,8 +61,11 @@ export function SigninScreen() {
               
               if ( doc.data().userId === currentUser.uid){
                 // console.log("typeof : ",typeof(doc.data().userLevel))
-                setLevel(doc.data().userLevel);
-                userListItems(currentUser);
+                const userInfo = doc.data() as userInfos;
+                setLevel(userInfo.userLevel);
+                userListItems(userInfo.userLevel);
+                console.log(currentUser)
+                console.log(doc.data().userLevel);
               }
               
               // _users.push({
@@ -75,7 +78,7 @@ export function SigninScreen() {
             });
           });
 
-          const userListItems = ((user : any) => {
+          const userListItems = (level: string) => {
             // console.log("level",level)
             if (level === "Maestro") {
 
@@ -94,7 +97,6 @@ export function SigninScreen() {
                 navigation.navigate("Baby");
               }
           }
-        );
 
 
 
