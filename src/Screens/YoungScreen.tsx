@@ -1,16 +1,52 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, Text, View ,Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import firebase from "firebase";
 
 import babyPic1 from "../../assets/ヤング.png";
+import { userInfo } from "os";
 
 export function YoungScreen() {
   const navigation = useNavigation();
   const toYoungQuiz = () => {
     navigation.navigate("YoungQuiz");
   };
+
+  const [level, setLevel] = useState<string>("");
+  const uid = firebase.auth().currentUser?.uid; //現在のユーザーのuidを取得
+
+  const getUsersDocRef = async () => {
+    return await firebase.firestore().collection("users").doc(uid); //Cloud Firestoreのusersというコレクションの中のドキュメントを参照する
+  };
+  const setUserInfos = async (level: string) => {
+    const docRef = await getUsersDocRef();
+    // const newUserInfos = {
+    //   userLevel: level,
+    //   userId: uid, //cloudのuserのuidをuserIdに変更してる
+    // } as userInfos;
+    console.log(docRef.id);
+    // console.log(newUserInfos);
+    docRef.update({ userLevel: level, userId: uid }); // 新しいuserInfosをDBに入れる
+  };
+
+  // docRef.set(newUserInfos);
+
+  const currentLevel = "Young";
+  setUserInfos(currentLevel);
+
+  // const db = firebase.firestore();
+  // db.collection("users")
+  //   .doc("0OsfrrrzbloRlekLWaXC")
+  //   .update({ userLevel: "お" });
+
+  // const db = firebase.firestore();
+  // db.collection('users').doc('').update({
+  //   userId: ,
+  //   userLevel: ,
+  // })
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ヤング</Text>
@@ -59,6 +95,7 @@ export function YoungScreen() {
       >
         <Text style={styles.course}>ヤングコースの「その他」</Text>
       </TouchableOpacity>
+      <Text>{"\n"}【5つのコースを覚えたらレベルチェックをうけてください】</Text>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("YoungQuiz");
@@ -69,7 +106,8 @@ export function YoungScreen() {
       <StatusBar style="auto" />
     </View>
   );
-}
+};
+
 
 const styles = StyleSheet.create({
   container: {

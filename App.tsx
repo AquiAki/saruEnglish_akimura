@@ -37,7 +37,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Maestro">
+      <Stack.Navigator initialRouteName="SignIn">
         <Stack.Screen
           name="Baby"
           component={BabyScreen}

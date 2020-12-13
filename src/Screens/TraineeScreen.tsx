@@ -20,42 +20,45 @@ export function TraineeScreen() {
           navigation.navigate("TraineeVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「身体」</Text>
+        <Text style={styles.course}>トレーニーコースの「身体」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("TraineeVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「症状」</Text>
+        <Text style={styles.course}>トレーニーコースの「症状」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("TraineeVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「検査」</Text>
+        <Text style={styles.course}>トレーニーコースの「検査」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("TraineeVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「病名」</Text>
+        <Text style={styles.course}>トレーニーコースの「病名」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("TraineeVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「その他」</Text>
+        <Text style={styles.course}>トレーニーコースの「その他」</Text>
       </TouchableOpacity>
+      <Text>{"\n"}【5つのコースを覚えたらレベルチェックをうけてください】</Text>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("TraineeQuiz");
         }}
       >
-        <Text style={styles.course}>ヤングコースのレベルチェックを受ける</Text>
+        <Text style={styles.course}>
+          トレーニーコースのレベルチェックを受ける
+        </Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>

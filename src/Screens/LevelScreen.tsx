@@ -17,22 +17,22 @@ export function LevelScreen() {
 
   //Cloud Firestoreのusersというコレクションの中のドキュメントを参照する
   const getMessageDocRef = async () => {
-    return await firebase.firestore().collection("users").doc();
+    return await firebase.firestore().collection("users");
   };
 
   const setUserInfos = async (level: string) => {
-    const uid = firebase.auth().currentUser?.uid;
+    const uid = firebase.auth().currentUser?.uid; //現在のユーザーのuid
     if (!uid) {
       alert("サインインしていません");
       return;
     }
 
-    const docRef = await getMessageDocRef();
-    const newUserInfos = {
+    const docRef = await getMessageDocRef(); //何か文字が入力されていれば、データベースからメッセージを全て読み込む
+    const newUserInfos = { //入力されていた文字と、現在サインインしているユーザーの情報からMessage型のnewMessageをつくる。
       userLevel: level,
       userId: uid, //cloudのuserのuidをuserIdに変更してる
     } as userInfos;
-    await docRef.set(newUserInfos); // 新しいuserInfosをDBに入れる
+    await docRef.doc(uid).set(newUserInfos); // 新しいnewUserInfosをDBに保存
   };
 
   const handleAnswerButtonClick = (isCorrect: boolean) => {

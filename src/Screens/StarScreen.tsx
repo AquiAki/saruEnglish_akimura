@@ -13,7 +13,9 @@ export function StarScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>スター</Text>
-      <Text style={styles.mes}>【ここはステージ4、SARUのスターコースです】</Text>
+      <Text style={styles.mes}>
+        【ここはステージ4、SARUのスターコースです】
+      </Text>
       <Text>
         すごいよ、君はスターだよ！初心を忘れずに最終ステージまでこのまま突き進もう！
       </Text>
@@ -22,42 +24,43 @@ export function StarScreen() {
           navigation.navigate("StarVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「身体」</Text>
+        <Text style={styles.course}>スターコースの「身体」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("StarVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「症状」</Text>
+        <Text style={styles.course}>スターコースの「症状」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("StarVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「検査」</Text>
+        <Text style={styles.course}>スターコースの「検査」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("StarVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「病名」</Text>
+        <Text style={styles.course}>スターコースの「病名」</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("StarVoc");
         }}
       >
-        <Text style={styles.course}>ヤングコースの「その他」</Text>
+        <Text style={styles.course}>スターコースの「その他」</Text>
       </TouchableOpacity>
+      <Text>{"\n"}【5つのコースを覚えたらレベルチェックをうけてください】</Text>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("StarQuiz");
         }}
       >
-        <Text style={styles.course}>ヤングコースのレベルチェックを受ける</Text>
+        <Text style={styles.course}>スターコースのレベルチェックを受ける</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>

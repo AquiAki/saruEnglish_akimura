@@ -60,6 +60,7 @@ export function SigninScreen() {
 
               
               if ( doc.data().userId === currentUser.uid){
+                // console.log("typeof : ",typeof(doc.data().userLevel))
                 setLevel(doc.data().userLevel);
                 userListItems(currentUser);
               }
@@ -75,6 +76,7 @@ export function SigninScreen() {
           });
 
           const userListItems = ((user : any) => {
+            // console.log("level",level)
             if (level === "Maestro") {
 
                 navigation.navigate("Maestro");
