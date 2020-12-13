@@ -12,6 +12,7 @@ import "react-native-gesture-handler";
 import { Provider as PaperProvider } from "react-native-paper";
 
 import { FAB } from "react-native-paper";
+import firebase from "firebase";
 
 import babyPic from "../../assets/ベイビー.jpg";
 
@@ -23,6 +24,24 @@ export function BabyScreen() {
   const toBabyVoc = () => {
     navigation.navigate("BabyVoc");
   };;
+
+
+  const uid = firebase.auth().currentUser?.uid; //現在のユーザーのuidを取得
+
+  const getUsersDocRef = async () => {
+    return await firebase.firestore().collection("users").doc(uid); //Cloud Firestoreのusersというコレクションの中のドキュメントを参照する
+  };
+  const setUserInfos = async (level: string) => {
+    const docRef = await getUsersDocRef();
+    console.log(docRef.id);
+    // console.log(newUserInfos);
+    docRef.update({ userLevel: level, userId: uid }); // 新しいuserInfosをDBに入れる
+  };
+
+  // docRef.set(newUserInfos);
+
+  const currentLevel = "Baby";
+  setUserInfos(currentLevel);
 
   return (
     <View style={styles.container}>

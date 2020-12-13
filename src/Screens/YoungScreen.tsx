@@ -22,10 +22,6 @@ export function YoungScreen() {
   };
   const setUserInfos = async (level: string) => {
     const docRef = await getUsersDocRef();
-    // const newUserInfos = {
-    //   userLevel: level,
-    //   userId: uid, //cloudのuserのuidをuserIdに変更してる
-    // } as userInfos;
     console.log(docRef.id);
     // console.log(newUserInfos);
     docRef.update({ userLevel: level, userId: uid }); // 新しいuserInfosをDBに入れる
@@ -36,16 +32,6 @@ export function YoungScreen() {
   const currentLevel = "Young";
   setUserInfos(currentLevel);
 
-  // const db = firebase.firestore();
-  // db.collection("users")
-  //   .doc("0OsfrrrzbloRlekLWaXC")
-  //   .update({ userLevel: "お" });
-
-  // const db = firebase.firestore();
-  // db.collection('users').doc('').update({
-  //   userId: ,
-  //   userLevel: ,
-  // })
 
   return (
     <View style={styles.container}>

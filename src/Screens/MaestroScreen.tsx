@@ -3,12 +3,33 @@ import React from "react";
 import { StyleSheet, Text, View , SafeAreaView} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
+import firebase from "firebase";
+
 
 export function MaestroScreen() {
   const navigation = useNavigation();
   const toMaestroQuiz = () => {
     navigation.navigate("MaestroQuiz");
   };
+
+    const uid = firebase.auth().currentUser?.uid; //現在のユーザーのuidを取得
+
+    const getUsersDocRef = async () => {
+      return await firebase.firestore().collection("users").doc(uid); //Cloud Firestoreのusersというコレクションの中のドキュメントを参照する
+    };
+    const setUserInfos = async (level: string) => {
+      const docRef = await getUsersDocRef();
+      console.log(docRef.id);
+      // console.log(newUserInfos);
+      docRef.update({ userLevel: level, userId: uid }); // 新しいuserInfosをDBに入れる
+    };
+
+    // docRef.set(newUserInfos);
+
+    const currentLevel = "Maestro";
+    setUserInfos(currentLevel);
+
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -56,7 +77,11 @@ export function MaestroScreen() {
             <Text style={styles.course}>マエストロコースの「その他」</Text>
           </TouchableOpacity>
           <Text>
-            {"\n"}【5つのコースを覚えたらレベルチェックをうけてください】
+            {"\n"}
+            {"\n"}
+            {"\n"}
+            【全ての単語を覚えたらレベルチェックをうけてください】
+            {"\n"}
           </Text>
           <TouchableOpacity
             onPress={() => {
@@ -67,49 +92,61 @@ export function MaestroScreen() {
               マエストロコースのレベルチェックを受ける
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("BabyQuiz");
-            }}
-          >
-            <Text style={styles.course}>
-              【復習用】ベイビーのレベルチェック
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("YoungQuiz");
-            }}
-          >
-            <Text style={styles.course}>
-              【復習用】ヤングコースのレベルチェック
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("TraineeQuiz");
-            }}
-          >
-            <Text style={styles.course}>
-              【復習用】トレーニーコースのレベルチェック
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("StarQuiz");
-            }}
-          >
-            <Text style={styles.course}>
-              スターコースのレベルチェックを受ける
-            </Text>
-          </TouchableOpacity>
+
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("MaestroVoc");
             }}
           >
-            <Text style={styles.all}>【SARU総まとめ】</Text>
+            <Text style={styles.all}>SARU総まとめ</Text>
           </TouchableOpacity>
+
+            
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Baby");
+            }}
+          >
+            <Text style={styles.course}>
+              ベイビーへ戻る
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Young");
+            }}
+          >
+            <Text style={styles.course}>
+              ヤングへ戻る
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Trainee");
+            }}
+          >
+            <Text style={styles.course}>
+              トレーニーコースへ戻る
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Star");
+            }}
+          >
+            <Text style={styles.course}>
+              スターコースへ戻る
+            </Text>
+          </TouchableOpacity>
+
+          {/* <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("MaestroVoc");
+            }}
+          >
+            <Text style={styles.proceed}>【他のコースへ戻る手続きをする】</Text>
+          </TouchableOpacity> */}
+
           <StatusBar style="auto" />
         </View>
       </ScrollView>
@@ -126,7 +163,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "blue",
-    marginTop:30,
+    marginTop: 30,
     marginBottom: 30,
     fontSize: 30,
   },
@@ -147,13 +184,26 @@ const styles = StyleSheet.create({
 
   all: {
     padding: 10,
-    marginBottom: 15,
+    marginBottom: 60,
     borderColor: "gray",
     borderWidth: 2,
     borderRadius: 10,
     width: 280,
     alignItems: "center",
     textAlign: "center",
-    color:"red",
+    color: "#880000",
   },
+
+  // proceed: {
+  //   padding: 10,
+  //   marginTop: 20,
+  //   marginBottom: 20,
+  //   borderColor: "gray",
+  //   borderWidth: 2,
+  //   borderRadius: 10,
+  //   width: 280,
+  //   alignItems: "center",
+  //   textAlign: "center",
+  //   color: "#333333",
+  // },
 });
