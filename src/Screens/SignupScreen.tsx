@@ -6,17 +6,13 @@ import {
   View,
   Button,
   TextInput,
-  KeyboardAvoidingView,
-  Platform,
   SafeAreaView,
   Alert,
-  StatusBar,
-  TouchableWithoutFeedback,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import firebase from "firebase";
-
-
+import saruBack from "../../assets/saruBack.png";
 
 export function SignupScreen() {
   const [email, setEmail] = useState("");
@@ -30,6 +26,7 @@ export function SignupScreen() {
     navigation.navigate("SignIn");
   };
 
+
   //Submitが押されたときにSign Up(登録処理)する関数
   const pressedSubmit = (email: string, password: string) => {
     //ここでFirebaseでの登録
@@ -38,8 +35,7 @@ export function SignupScreen() {
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
         //登録成功したらログイン画面に戻る
-        // Alert.alert("登録成功！", "次はレベルチェックテストにトライしよう！");
-
+        Alert.alert("登録成功！", "次はレベルチェックテストです");
         toLevel();
       })
       .catch((error) => {
@@ -49,14 +45,16 @@ export function SignupScreen() {
       });
   };
 
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* <KeyboardAvoidingView style={styles.container}> */}
-      <View style={styles.titleAndFieldView}>
-        <Text style={styles.screenTitle}>
-          まずはメールアドレスとパスワードで登録
-        </Text>
+      <Text style={styles.note}>
+        登録ボタンを押すと、レベルチェックに移ります
+        {"\n"}
+        どれだけわかるか試してみましょう！
+      </Text>
 
+      <View style={styles.titleAndFieldView}>
         <TextInput
           style={styles.inputField}
           placeholder="                       メールアドレスを入力"
@@ -70,31 +68,43 @@ export function SignupScreen() {
           style={styles.inputField}
           placeholder="                       パスワードを入力"
           keyboardType="visible-password"
-          secureTextEntry={false}
+          secureTextEntry={true}
           onChangeText={(password) => {
             setPassword(password);
           }}
         />
 
         <ExpoStatusBar style="auto" />
+
+        <View style={styles.includeButton1}>
+          <Button
+            title="登録する"
+            color="white"
+            onPress={() => {
+              pressedSubmit(email, password);
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.includeButtons}>
-        <Button
-          title="登録する"
-          onPress={() => {
-            pressedSubmit(email, password);
+      <View style={styles.backPic}>
+        <Image
+          source={saruBack}
+          style={{
+            width: 200,
+            height: 200,
+            resizeMode: "contain",
           }}
         />
-        <View style={styles.spacer}></View>
-        {/*この行のViewを追加 */}
+      </View>
+      <View style={styles.includeButton2}>
         <Button
           title="戻る"
+          color="black"
           onPress={() => {
             toSignIn();
           }}
         />
       </View>
-      {/* </KeyboardAvoidingView> */}
     </SafeAreaView>
   );
 }
@@ -102,34 +112,59 @@ export function SignupScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAEBD7",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+  note: {
+    marginTop: 100,
+    textAlign: "center",
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  backPic: {
+    marginTop: 30,
   },
   titleAndFieldView: {
-    width: "90%",
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    flex: 3,
+    marginTop: 70,
+    color: "#FF367F",
+    fontSize: 42,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "rgba(255,255,255,0.5)",
+    padding: 20,
   },
-  screenTitle: {
-    fontSize: 15,
-    marginBottom: 50,
-  },
+
   inputField: {
     width: "80%",
     marginBottom: 20,
     height: 35,
-    backgroundColor: "lightgray",
-  },
-  includeButtons: {
-    flex: 4,
-    marginVertical: 10,
+    backgroundColor: "white",
   },
 
-  spacer: {
-    height: 30,
+  includeButton1: {
+    marginVertical: 10,
+    borderRadius: 10,
+    backgroundColor: "#8B4513",
+
+    shadowColor: "#D2B48C",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowRadius: 0,
+    shadowOpacity: 1,
+  },
+  includeButton2: {
+    width: "100%",
+    marginTop: 30,
+    marginBottom: 30,
   },
 });

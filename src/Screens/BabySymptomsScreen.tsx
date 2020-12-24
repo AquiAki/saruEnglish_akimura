@@ -37,37 +37,37 @@ export function BabySymptomsScreen() {
 
       en: "feel sluggish",
       ja: "体がだるい",
-      pronounce: require("../../assets/sounds/39574744948.mp3"),
+      pronounce: require("../../assets/sounds/headache.mp3"),
     },
     {
       en: "feel run-down",
       ja: "体がだるい",
-      pronounce: require("../../assets/sounds/39574746096.mp3"),
+      // pronounce: require("../../assets/sounds/39574746096.mp3"),
     },
     {
       en: "have an abdominal pain",
       ja: "おなかが痛い",
-      pronounce: require("../../assets/sounds/39574745520.mp3"),
+      // pronounce: require("../../assets/sounds/39574745520.mp3"),
     },
     {
       en: "have a stomachache",
       ja: "おなかが痛い",
-      pronounce: require("../../assets/sounds/39574745533.mp3"),
+      // pronounce: require("../../assets/sounds/39574745533.mp3"),
     },
     {
       en: "fart",
       ja: "おならが出る",
-      pronounce: require("../../assets/sounds/39574745952.mp3"),
+      // pronounce: require("../../assets/sounds/39574745952.mp3"),
     },
     {
       en: "hurt",
       ja: "痛みがある",
-      pronounce: require("../../assets/sounds/39574745987.mp3"),
+      // pronounce: require("../../assets/sounds/39574745987.mp3"),
     },
     {
       en: "be in pain",
       ja: "痛みがある",
-      pronounce: require("../../assets/sounds/39574745997.mp3"),
+      // pronounce: require("../../assets/sounds/39574745997.mp3"),
     },
   ];
 

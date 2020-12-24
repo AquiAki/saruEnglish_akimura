@@ -1,9 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View , SafeAreaView} from "react-native";
+import { StyleSheet, Text, View , SafeAreaView, Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import firebase from "firebase";
+
+import babyPic1 from "../../assets/マエストロ.png";
+
 
 
 export function MaestroScreen() {
@@ -36,6 +39,14 @@ export function MaestroScreen() {
         <View style={styles.container}>
           <Text style={styles.title}>マエストロ</Text>
           <Text>【ついに最終ステージ、マエストロコースへようこそ！】</Text>
+          <Image
+            source={babyPic1}
+            style={{
+              width: 200,
+              height: 200,
+              resizeMode: "contain",
+            }}
+          />
           <Text style={styles.mes}>
             君の医療英語への熱意には驚かされるの~
             {"\n"}
@@ -101,42 +112,33 @@ export function MaestroScreen() {
             <Text style={styles.all}>SARU総まとめ</Text>
           </TouchableOpacity>
 
-            
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Baby");
             }}
           >
-            <Text style={styles.course}>
-              ベイビーへ戻る
-            </Text>
+            <Text style={styles.course}>ベイビーへ戻る</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Young");
             }}
           >
-            <Text style={styles.course}>
-              ヤングへ戻る
-            </Text>
+            <Text style={styles.course}>ヤングへ戻る</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Trainee");
             }}
           >
-            <Text style={styles.course}>
-              トレーニーコースへ戻る
-            </Text>
+            <Text style={styles.course}>トレーニーコースへ戻る</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Star");
             }}
           >
-            <Text style={styles.course}>
-              スターコースへ戻る
-            </Text>
+            <Text style={styles.course}>スターコースへ戻る</Text>
           </TouchableOpacity>
 
           {/* <TouchableOpacity

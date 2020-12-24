@@ -37,37 +37,37 @@ export function BabyTestScreen() {
 
       en: "pill",
       ja: "錠剤",
-      pronounce: require("../../assets/sounds/39574746908.mp3"),
+      pronounce: require("../../assets/sounds/headache.mp3"),
     },
     {
       en: "tablet",
       ja: "錠剤",
-      pronounce: require("../../assets/sounds/39574746920.mp3"),
+      // pronounce: require("../../assets/sounds/39574746920.mp3"),
     },
     {
       en: "insulin",
       ja: "インスリン",
-      pronounce: require("../../assets/sounds/39574746945.mp3"),
+      // pronounce: require("../../assets/sounds/39574746945.mp3"),
     },
     {
       en: "have a stomachache",
       ja: "おなかが痛い",
-      pronounce: require("../../assets/sounds/39574745533.mp3"),
+      // pronounce: require("../../assets/sounds/39574745533.mp3"),
     },
     {
       en: "fart",
       ja: "おならが出る",
-      pronounce: require("../../assets/sounds/39574745952.mp3"),
+      // pronounce: require("../../assets/sounds/39574745952.mp3"),
     },
     {
       en: "hurt",
       ja: "痛みがある",
-      pronounce: require("../../assets/sounds/39574745987.mp3"),
+      // pronounce: require("../../assets/sounds/39574745987.mp3"),
     },
     {
       en: "be in pain",
       ja: "痛みがある",
-      pronounce: require("../../assets/sounds/39574745997.mp3"),
+      // pronounce: require("../../assets/sounds/39574745997.mp3"),
     },
   ];
 

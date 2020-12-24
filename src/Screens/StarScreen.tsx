@@ -1,9 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import firebase from "firebase";
+
+import babyPic1 from "../../assets/スター.png";
+
 
 
 export function StarScreen() {
@@ -36,6 +39,14 @@ export function StarScreen() {
       <Text style={styles.mes}>
         【ここはステージ4、SARUのスターコースです】
       </Text>
+      <Image
+        source={babyPic1}
+        style={{
+          width: 200,
+          height: 200,
+          resizeMode: "contain",
+        }}
+      />
       <Text>
         すごいよ、君はスターだよ！初心を忘れずに最終ステージまでこのまま突き進もう！
       </Text>

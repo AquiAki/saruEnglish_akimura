@@ -1,9 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View,Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import firebase from "firebase";
+
+import babyPic1 from "../../assets/トレーニー.png";
 
 
 
@@ -36,6 +38,14 @@ export function TraineeScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>トレーニー</Text>
       <Text>【ステージ3、SARUのトレーニーコース】</Text>
+      <Image
+        source={babyPic1}
+        style={{
+          width: 200,
+          height: 200,
+          resizeMode: "contain",
+        }}
+      />
       <Text style={styles.mes}>ここは踏ん張りどころだ、継続は力なりです！</Text>
       <TouchableOpacity
         onPress={() => {

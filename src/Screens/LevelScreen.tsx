@@ -1,8 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button,Image,Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import firebase from "firebase";
+import firstPic from "../../assets/saruGood.png";
+import secondPic from "../../assets/notyet.png";
+import thirdPic from "../../assets/peaceSaru.png";
+import forthPic from "../../assets/lastRun.png";
+import fifthPic from "../../assets/bow.png";
+
 
 export function LevelScreen() {
   const navigation = useNavigation();
@@ -46,7 +52,7 @@ export function LevelScreen() {
       setcurrentQuestion(nextQuestion);
     } else {
       // setShowScore(true)
-      alert(`レベルチェックは終わりです。
+      Alert.alert(`レベルチェックは終わりです。
     お疲れ様でした`);
       const level = judgeLevel(score);
       setUserInfos(level);
@@ -56,41 +62,47 @@ export function LevelScreen() {
   };
 
   const checkLevel = () => {
-    if (score <= 2 ) {
+    if (score <= 15 ) {
       setLevel("Baby");
       navigation.navigate("Baby");
-    } else if (score <= 4) {
+    } else if (score <= 17) {
       setLevel("Young");
       navigation.navigate("Young");
-    } else if (score <= 6) {
+    }else if (score <= 19) {
       setLevel("Trainee");
       navigation.navigate("Trainee");
-    }else if (score <= 8) {
+    } else {
       setLevel("Star");
       navigation.navigate("Star");
-    } else {
-      setLevel("Maestro");
-      navigation.navigate("Maestro");
     }
   };
 
 
   const judgeLevel = (score: number) => {
-    if (score <= 2) {
+    if (score <= 15) {
       return "Baby";
-    } else if (score <= 4) {
+    } else if (score <= 17) {
       return "Young";
-    } else if (score <= 6) {
+    } else if (score <= 19) {
       return "Trainee";
-    } else if (score <= 8) {
-      return "Star";
     } else {
-      return "Maestro";
+      return "Star";
     }
   };
 
 
   const questions = [
+    {
+      imagePic: firstPic,
+      message: "がんばるぞー！",
+      questionText: "forehead",
+      answerOptions: [
+        { answerText: "頭頂部", isCorrect: false },
+        { answerText: "くるぶし", isCorrect: false },
+        { answerText: "のどぼとけ", isCorrect: false },
+        { answerText: "おでこ", isCorrect: true },
+      ],
+    },
     {
       questionText: "temple",
       answerOptions: [
@@ -110,15 +122,17 @@ export function LevelScreen() {
       ],
     },
     {
-      questionText: "faint / pass out",
+      questionText: "olecranon",
       answerOptions: [
-        { answerText: "気分が落ち込む", isCorrect: false },
-        { answerText: "失神する", isCorrect: true },
-        { answerText: "興奮する", isCorrect: false },
-        { answerText: "いらいらする", isCorrect: false },
+        { answerText: "橈骨", isCorrect: false },
+        { answerText: "肘頭", isCorrect: true },
+        { answerText: "尺骨", isCorrect: false },
+        { answerText: "上腕骨", isCorrect: false },
       ],
     },
     {
+      imagePic: secondPic,
+      message: "まだまだー",
       questionText: "obesity",
       answerOptions: [
         { answerText: "のぼせ、ほてり", isCorrect: false },
@@ -128,57 +142,146 @@ export function LevelScreen() {
       ],
     },
     {
-      questionText: "ilium",
+      questionText: "腸骨",
       answerOptions: [
-        { answerText: "仙骨", isCorrect: false },
-        { answerText: "骨盤", isCorrect: false },
-        { answerText: "恥骨", isCorrect: false },
-        { answerText: "腸骨", isCorrect: true },
+        { answerText: "sacrum", isCorrect: false },
+        { answerText: "pelvis", isCorrect: false },
+        { answerText: "pubis", isCorrect: false },
+        { answerText: "ilium", isCorrect: true },
       ],
     },
     {
-      questionText: "gallbladder",
+      questionText: "膵臓",
       answerOptions: [
-        { answerText: "胆のう", isCorrect: true },
-        { answerText: "胃", isCorrect: false },
-        { answerText: "小腸", isCorrect: false },
-        { answerText: "盲腸", isCorrect: false },
+        { answerText: "pancreas", isCorrect: true },
+        { answerText: "spleen", isCorrect: false },
+        { answerText: "pharynx", isCorrect: false },
+        { answerText: "appendix", isCorrect: false },
       ],
     },
     {
-      questionText: "peripheral nerve",
+      questionText: "末梢神経",
       answerOptions: [
-        { answerText: "自律神経", isCorrect: false },
-        { answerText: "副交感神経", isCorrect: false },
-        { answerText: "交感神経", isCorrect: false },
-        { answerText: "末梢神経", isCorrect: true },
+        { answerText: "parasympathetic nerve", isCorrect: false },
+        { answerText: "sympathetic nerve", isCorrect: false },
+        { answerText: "autonomic nerve", isCorrect: false },
+        { answerText: "peripheral nerve", isCorrect: true },
       ],
     },
     {
-      questionText: "thalamus",
+      questionText: "視床",
       answerOptions: [
-        { answerText: "大脳", isCorrect: false },
-        { answerText: "視床", isCorrect: true },
-        { answerText: "中脳", isCorrect: false },
-        { answerText: "延髄", isCorrect: false },
+        { answerText: "cerebellum", isCorrect: false },
+        { answerText: "thalamus", isCorrect: true },
+        { answerText: "hypothalamus", isCorrect: false },
+        { answerText: "cerebrum", isCorrect: false },
       ],
     },
     {
-      questionText: "pupil",
+      imagePic: thirdPic,
+      message: "折返しまできたよー！",
+      questionText: "角膜",
       answerOptions: [
-        { answerText: "血管", isCorrect: false },
-        { answerText: "鼓膜", isCorrect: false },
-        { answerText: "瞳孔", isCorrect: true },
-        { answerText: "水晶体", isCorrect: false },
+        { answerText: "pupil", isCorrect: false },
+        { answerText: "retina", isCorrect: false },
+        { answerText: "cornea", isCorrect: true },
+        { answerText: "iris", isCorrect: false },
       ],
     },
     {
-      questionText: "thyroid",
+      questionText: "have palpitations",
       answerOptions: [
-        { answerText: "膵臓", isCorrect: false },
-        { answerText: "胸腺", isCorrect: false },
-        { answerText: "甲状腺", isCorrect: true },
-        { answerText: "副腎", isCorrect: false },
+        { answerText: "のぼせる", isCorrect: false },
+        { answerText: "動悸がする", isCorrect: true },
+        { answerText: "痰が出る", isCorrect: false },
+        { answerText: "息苦しい", isCorrect: false },
+      ],
+    },
+
+    {
+      questionText: "be swollen",
+      answerOptions: [
+        { answerText: "むくんでいる", isCorrect: true },
+        { answerText: "出血している", isCorrect: false },
+        { answerText: "ただれている", isCorrect: false },
+        { answerText: "痛みがある", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "delirium",
+      answerOptions: [
+        { answerText: "気力がない", isCorrect: false },
+        { answerText: "焦燥感", isCorrect: false },
+        { answerText: "せん妄", isCorrect: true },
+        { answerText: "抑うつ", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "faint / pass out",
+      answerOptions: [
+        { answerText: "気分が落ち込む", isCorrect: false },
+        { answerText: "失神する", isCorrect: true },
+        { answerText: "興奮する", isCorrect: false },
+        { answerText: "いらいらする", isCorrect: false },
+      ],
+    },
+    {
+      imagePic: forthPic,
+      message: "あとちょっとだ、ラストスパート！",
+      questionText: "肺炎",
+      answerOptions: [
+        { answerText: "bronchitis", isCorrect: false },
+        { answerText: "pneumothorax", isCorrect: false },
+        { answerText: "tonsillitis", isCorrect: false },
+        { answerText: "pneumonia", isCorrect: true },
+      ],
+    },
+    {
+      questionText: "貧血",
+      answerOptions: [
+        { answerText: "diabetes", isCorrect: false },
+        { answerText: "anemia", isCorrect: true },
+        { answerText: "polyp", isCorrect: false },
+        { answerText: "gout", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "不整脈",
+      answerOptions: [
+        { answerText: "hypotension", isCorrect: false },
+        { answerText: "cardiomyopathy", isCorrect: false },
+        { answerText: "aneurysm", isCorrect: false },
+        { answerText: "arrhythmia", isCorrect: true },
+      ],
+    },
+    {
+      questionText: "抗血栓薬",
+      answerOptions: [
+        { answerText: "hemostatic drug", isCorrect: false },
+        { answerText: "antithrombotic drug", isCorrect: true },
+        { answerText: "vasodilator", isCorrect: false },
+        { answerText: "antianemic drug", isCorrect: false },
+      ],
+    },
+    {
+      questionText: "肝炎",
+      answerOptions: [
+        { answerText: "gastritis", isCorrect: false },
+        { answerText: "hepatitis", isCorrect: true },
+        { answerText: "cirrhosis", isCorrect: false },
+        { answerText: "colitis", isCorrect: false },
+      ],
+    },
+
+    {
+      imagePic: fifthPic,
+      message: "最後の問題です！",
+      questionText: "緑内障",
+      answerOptions: [
+        { answerText: "cataract", isCorrect: false },
+        { answerText: "conjunctivitis", isCorrect: false },
+        { answerText: "glaucoma", isCorrect: true },
+        { answerText: "keratitis", isCorrect: false },
       ],
     },
   ];
@@ -190,9 +293,18 @@ export function LevelScreen() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.mess}>{questions[currentQuestion].message}</Text>
       <Text style={styles.title}>
-        レベルチェック : {currentQuestion + 1}問目
-        {"\n"}
+        <Image
+          source={questions[currentQuestion].imagePic}
+          style={{
+            width: 80,
+            height: 80,
+            flexWrap: "wrap",
+            resizeMode: "contain",
+          }}
+        />
+
         {"\n"}
       </Text>
 
@@ -249,11 +361,13 @@ export function LevelScreen() {
         </Text>
       </TouchableOpacity>
 
+      <Text style={styles.title}>
+        {"\n"}
+        {currentQuestion + 1}問目
+      </Text>
+
       <Text>
-        {"\n"}
-        {"\n"}
-        {"\n"}
-        Score : {score} / {currentQuestion + 1}
+        Score : {score}
       </Text>
 
       <StatusBar style="auto" />
@@ -264,13 +378,18 @@ export function LevelScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#EEEEEE",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
     fontSize: 20,
     marginBottom: 10,
+  },
+  mess:{
+    fontSize:15,
+    marginBottom:10,
+    flexWrap:"wrap",
   },
   question: {
     fontSize: 45,
@@ -280,8 +399,8 @@ const styles = StyleSheet.create({
     padding: 1,
     margin: 30,
     fontSize: 20,
-    borderWidth: 3,
-    borderRadius: 10,
+    borderWidth: 2,
+    borderRadius: 6,
     backgroundColor: "white",
     width: 200,
     textAlign: "center",

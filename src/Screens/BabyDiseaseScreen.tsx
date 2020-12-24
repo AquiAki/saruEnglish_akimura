@@ -37,37 +37,37 @@ export function BabyDiseaseScreen() {
 
       en: "cold",
       ja: "風邪",
-      pronounce: require("../../assets/sounds/39574754253.mp3"),
+      pronounce: require("../../assets/sounds/headache.mp3"),
     },
     {
       en: "asthma",
       ja: "喘息",
-      pronounce: require("../../assets/sounds/39574754270.mp3"),
+      // pronounce: require("../../assets/sounds/39574754270.mp3"),
     },
     {
       en: "pneumothorax",
       ja: "気胸",
-      pronounce: require("../../assets/sounds/39574754283.mp3"),
+      // pronounce: require("../../assets/sounds/39574754283.mp3"),
     },
     {
       en: "frozen shoulder)",
       ja: "四十肩、五十肩",
-      pronounce: require("../../assets/sounds/39574754307.mp3"),
+      // pronounce: require("../../assets/sounds/39574754307.mp3"),
     },
     {
       en: "diabetes",
       ja: "糖尿病",
-      pronounce: require("../../assets/sounds/39574754318.mp3"),
+      // pronounce: require("../../assets/sounds/39574754318.mp3"),
     },
     {
       en: "anemia",
       ja: "貧血",
-      pronounce: require("../../assets/sounds/39574754328.mp3"),
+      // pronounce: require("../../assets/sounds/39574754328.mp3"),
     },
     {
       en: "obesity",
       ja: "肥満",
-      pronounce: require("../../assets/sounds/39574754332.mp3"),
+      // pronounce: require("../../assets/sounds/39574754332.mp3"),
     },
   ];
 

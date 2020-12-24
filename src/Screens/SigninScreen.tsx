@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar"; 
-import React, { useState , useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,25 +11,21 @@ import {
   SafeAreaView,
   Alert,
   StatusBar,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import firebase from "firebase";
-
-
-
+import babyPic from "../../assets/basicSaru.png";
 
 
 export function SigninScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userInfo, setUserInfo] = useState<userInfos[]>([]);
-  const [level, setLevel] = useState<string>("");
-  const [users,setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
+  // const [userInfo, setUserInfo] = useState<userInfos[]>([]);
+  // const [level, setLevel] = useState<string>("");
 
   const navigation = useNavigation();
-  const toHome = (user: signedInUser) => {      // ここもhomeではなく、ログイン情報をもとにユーザーがどのレベルかを判断し、そのレベルの画面に遷移する
-    navigation.navigate("Home", {user: user});
-  };
   const toSignup = () => {
     navigation.navigate("SignUp");
   };
@@ -49,7 +45,7 @@ export function SigninScreen() {
           uid: user.user.uid,
         };
         // console.log(JSON.stringify(user));
-        Alert.alert("サインイン成功！", "正常にサインインできました。");
+        Alert.alert("成功！", "正常にサインインできました。");
 
         const db = firebase.firestore();
         db.collection("users")
@@ -57,49 +53,31 @@ export function SigninScreen() {
           .then((snapshot) => {
             const _users: any = [];
             snapshot.forEach((doc) => {
-
-              
-              if ( doc.data().userId === currentUser.uid){
+              if (doc.data().userId === currentUser.uid) {
                 // console.log("typeof : ",typeof(doc.data().userLevel))
                 const userInfo = doc.data() as userInfos;
-                setLevel(userInfo.userLevel);
                 userListItems(userInfo.userLevel);
-                console.log(currentUser)
+                console.log(currentUser);
                 console.log(doc.data().userLevel);
+                // setLevel(userInfo.userLevel);
               }
-              
-              // _users.push({
-              //   userId: doc.id,
-              //   ...doc.data(),
-              // });
-
-              // setUsers(_users);
-
             });
           });
 
-          const userListItems = (level: string) => {
-            // console.log("level",level)
-            if (level === "Maestro") {
-
-                navigation.navigate("Maestro");
-              } else if (level === "Star") {
-
-                navigation.navigate("Star");
-              } else if (level === "Trainee") {
-
-                navigation.navigate("Trainee");
-              } else if (level === "Young") {
-
-                navigation.navigate("Young");
-              } else {
-
-                navigation.navigate("Baby");
-              }
+        const userListItems = (level: string) => {
+          // console.log("level",level)
+          if (level === "Maestro") {
+            navigation.navigate("Maestro");
+          } else if (level === "Star") {
+            navigation.navigate("Star");
+          } else if (level === "Trainee") {
+            navigation.navigate("Trainee");
+          } else if (level === "Young") {
+            navigation.navigate("Young");
+          } else {
+            navigation.navigate("Baby");
           }
-
-
-
+        };
 
         // //useEffectの中にデータベースのusersコレクション内の値を監視する処理を記述
         //   useEffect(() => {
@@ -132,17 +110,29 @@ export function SigninScreen() {
       });
   };
 
-
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.titleAndFieldView}>
-          <Text style={styles.screenTitle}>
-            すでに登録している人はログインしてください
+          
+          <Text
+            style={{
+              fontSize: 30,
+              color: "#8B4513",
+            }}
+          >
+            医療英語アプリ SARU
           </Text>
-          <Text style={styles.screenTitle}>
-            登録がまだの方は登録ボタンを押してください
-          </Text>
+
+          <Image
+            source={babyPic}
+            style={{
+              width: 200,
+              height: 200,
+              resizeMode: "contain",
+            }}
+          />
+
           <TextInput
             style={styles.inputField}
             placeholder="                       メールアドレスを入力"
@@ -163,11 +153,21 @@ export function SigninScreen() {
           />
           <ExpoStatusBar style="auto" />
         </View>
-        <View style={styles.includeButtons}>
-          <Button title="ログイン" onPress={() => {pressedSignIn(email,password)}} />
-          <View style={styles.spacer}></View>
+        <View style={styles.logInButtons}>
           <Button
-            title="登録画面へ"
+            title="ログイン"
+            color="white"
+            onPress={() => {
+              pressedSignIn(email, password);
+            }}
+          />
+        </View>
+
+        <Text style={styles.screenTitle}>登録がまだの方は新規登録へ</Text>
+        <View style={styles.registerButtons}>
+          <Button
+            title="新規登録"
+            color="white"
             onPress={() => {
               toSignup();
             }}
@@ -181,7 +181,7 @@ export function SigninScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAEBD7",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -191,26 +191,47 @@ const styles = StyleSheet.create({
     width: "90%",
     alignItems: "center",
     justifyContent: "center",
-    flex: 3,
   },
   screenTitle: {
     fontSize: 15,
-    marginBottom: 50,
+    marginBottom: 20,
   },
   inputField: {
     width: "80%",
     marginBottom: 20,
     height: 35,
-    backgroundColor: "lightgray",
+    backgroundColor: "white",
+    borderRadius: 10,
   },
-  includeButtons: {
-    flex: 4,
-    marginVertical: 10,
+  logInButtons: {
+    borderRadius: 10,
+    marginBottom: 70,
+    backgroundColor: "#8B4513",
+    shadowColor: "#D2B48C",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowRadius: 0,
+    shadowOpacity: 1,
   },
-
-  spacer: {
-    height: 30,
+  registerButtons: {
+    borderWidth: 3,
+    borderRadius: 10,
+    marginTop: 5,
+    borderColor: "#8B4513",
+    backgroundColor: "#8B4513",
+    
+    shadowColor: "#D2B48C",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowRadius: 0,
+    shadowOpacity: 1,
+    
   },
+  
 });
 
 

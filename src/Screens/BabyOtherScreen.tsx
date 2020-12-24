@@ -37,42 +37,42 @@ export function BabyOtherScreen() {
 
       en: "height",
       ja: "身長",
-      pronounce: require("../../assets/sounds/39574754540.mp3"),
+      pronounce: require("../../assets/sounds/headache.mp3"),
     },
     {
       en: "weight",
       ja: "体重",
-      pronounce: require("../../assets/sounds/39574754543.mp3"),
+      // pronounce: require("../../assets/sounds/39574754543.mp3"),
     },
     {
       en: "pulse",
       ja: "脈拍",
-      pronounce: require("../../assets/sounds/39574754549.mp3"),
+      // pronounce: require("../../assets/sounds/39574754549.mp3"),
     },
     {
       en: "sleep",
       ja: "睡眠",
-      pronounce: require("../../assets/sounds/39574754564.mp3"),
+      // pronounce: require("../../assets/sounds/39574754564.mp3"),
     },
     {
       en: "knee",
       ja: "膝",
-      pronounce: require("../../assets/sounds/39574744589.mp3"),
+      // pronounce: require("../../assets/sounds/39574744589.mp3"),
     },
     {
       en: "ankle",
       ja: "くるぶし",
-      pronounce: require("../../assets/sounds/39574744761.mp3"),
+      // pronounce: require("../../assets/sounds/39574744761.mp3"),
     },
     {
       en: "neck",
       ja: "首",
-      pronounce: require("../../assets/sounds/39574744800.mp3"),
+      // pronounce: require("../../assets/sounds/39574744800.mp3"),
     },
     {
       en: "arm",
       ja: "腕",
-      pronounce: require("../../assets/sounds/39574744806.mp3"),
+      // pronounce: require("../../assets/sounds/39574744806.mp3"),
     },
   ];
 
