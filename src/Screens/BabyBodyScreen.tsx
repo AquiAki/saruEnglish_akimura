@@ -19,7 +19,8 @@ import {
 import { FAB } from "react-native-paper";
 import { Audio } from "expo-av";
 import { Asset } from "expo-asset";
-import babyPic from "../../assets/baby.png";
+
+import warmUp from "../../assets/warmUp.png";
 import { url } from "inspector";
 import { Item } from "native-base";
 
@@ -48,7 +49,7 @@ export function BabyBodyScreen() {
       ja3: "頭痛",
       en4: " forehead",
       ja4: "おでこ",
-      comment: "＊ fore = 前の ",
+      comment: " ＊  ache = 痛み  ,  fore = 前の ",
       pronounce: require("../../assets/sounds/headache.mp3"),
     },
     {
@@ -60,6 +61,7 @@ export function BabyBodyScreen() {
       ja3: "有毛細胞",
       en4: " hair loss",
       ja4: "抜け毛",
+      comment: "＊ root = 根  ,  cell = 細胞  ,  loss = 失うこと、減少",
       pronounce: require("../../assets/sounds/hair.mp3"),
     },
     {
@@ -71,6 +73,7 @@ export function BabyBodyScreen() {
       ja3: "まつげ",
       en4: " eyelid",
       ja4: "まぶた",
+      // comment:"＊ brow も眉毛という意味  ,  lash = ",
 
       pronounce: require("../../assets/sounds/eyebrow.mp3"),
     },
@@ -79,8 +82,7 @@ export function BabyBodyScreen() {
       ja: "こめかみ",
       en2: "My temples are throbbing",
       en3: "こめかみがズキズキする",
-      comment:
-        "ラテン語で「時」を意味するtempusに由来するとされる単語 : temple(こめかみ)、temporary(一時的な) 、tempo(音の速さ)など",
+      comment: "＊ throbbing = 拍動性の 、(痛みが)ズキズキする ",
       pronounce: require("../../assets/sounds/temple.mp3"),
     },
     {
@@ -97,13 +99,14 @@ export function BabyBodyScreen() {
     {
       en: " face",
       ja: "顔",
-      en2: " surface",
-      ja2: "表面",
-      en3: " facial",
-      ja3: "顔の",
-      en4: "  facial nerve",
-      ja4: "顔面神経",
-      pronounce: require("../../assets/sounds/facial.mp3"),
+      en2: " facial",
+      ja2: "顔の",
+      en3: " facial nerve",
+      ja3: "顔面神経",
+      en4: "",
+      ja4: "",
+      comment: "＊ nerve = 神経",
+      // pronounce: require("../../assets/sounds/facial.mp3"),
     },
     {
       en: "nose",
@@ -114,6 +117,7 @@ export function BabyBodyScreen() {
       ja3: "鼻水がでる",
       en4: "have a stuffy nose ",
       ja4: "鼻が詰まる",
+      comment: "＊ bleed = 出血  ,  runny = 流れやすい  ,  stuffy = 詰まった",
       pronounce: require("../../assets/sounds/nose.mp3"),
     },
     {
@@ -125,6 +129,7 @@ export function BabyBodyScreen() {
       ja3: "口内炎",
       en4: "the corner of the mouth",
       ja4: "口角",
+      comment: "＊ ulcer = 潰瘍",
       pronounce: require("../../assets/sounds/mouth.mp3"),
     },
     {
@@ -132,10 +137,11 @@ export function BabyBodyScreen() {
       ja: "首",
       en2: "",
       ja2: "項部硬直",
-      en3: "1. stiff neck  2. nuchal rigidity",
+      en3: "1. stiff neck  ",
       ja3: "",
-      en4: "  nape",
-      ja4: "うなじ",
+      en4: "2. nuchal rigidity",
+      ja4: "",
+      comment: "＊ stiff = 堅い、凝った , nuchal = 項部の , rigidity = 硬直",
       pronounce: require("../../assets/sounds/neck.mp3"),
     },
     {
@@ -145,22 +151,23 @@ export function BabyBodyScreen() {
       ja2: "",
       en3: "2. laryngeal prominence",
       ja3: "",
-      en4: "  thyroid cartilage",
-      ja4: "甲状軟骨",
+      en4: "",
+      ja4: "",
       comment:
-        "「アダムが禁断の果実である林檎を喉に詰まらせた」という逸話からきているという説がある",
-      pronounce: require("../../assets/sounds/adamsApple.mp3"),
+        "＊ laryngeal = 喉頭部（の） , prominence = 突起          Adam's apple は「アダムが禁断の果実である林檎を喉に詰まらせた」という逸話からきているという説がある",
+      // pronounce: require("../../assets/sounds/adamsApple.mp3"),
     },
     {
       en: "shoulder",
       ja: "肩",
       en2: "shoulder joint",
       ja2: "肩関節",
-      en3: "shoulder blade",
+      en3: "shoulder blade / scapula",
       ja3: "肩甲骨",
       en4: "frozen shoulder",
       ja4: "四十肩、五十肩",
-      pronounce: require("../../assets/sounds/shoulder.mp3"),
+      comment: "＊ joint = 関節  ,  frozen = 寒さで凍った、機能が停止した",
+      // pronounce: require("../../assets/sounds/shoulder.mp3"),
     },
     {
       en: "arm",
@@ -171,7 +178,7 @@ export function BabyBodyScreen() {
       ja3: "上腕",
       en4: "forearm",
       ja4: "前腕",
-      comment: "＊ pit = くぼみ 、upper = 上の 、fore = 前の",
+      comment: "＊ pit = くぼみ , upper = 上の , fore = 前の",
       pronounce: require("../../assets/sounds/arm.mp3"),
     },
     {
@@ -183,6 +190,7 @@ export function BabyBodyScreen() {
       ja3: "テニス肘",
       en4: "bend the elbow",
       ja4: "肘を曲げる",
+      comment: "＊  bend = 曲げる",
       pronounce: require("../../assets/sounds/elbow.mp3"),
     },
     {
@@ -205,7 +213,7 @@ export function BabyBodyScreen() {
       ja3: "人差し指",
       en4: "",
       ja4: "",
-      comment: "thumbの語源は「強い」に由来する",
+      comment: "＊  thumbの語源は「強い」に由来する",
       pronounce: require("../../assets/sounds/finger1.mp3"),
     },
     {
@@ -228,6 +236,7 @@ export function BabyBodyScreen() {
       ja3: "胸腔",
       en4: "chest circumference",
       ja4: "胸囲",
+      comment: "＊  cavity = 空洞  ,  circumference = 周囲、周辺",
       pronounce: require("../../assets/sounds/chest.mp3"),
     },
     {
@@ -238,9 +247,9 @@ export function BabyBodyScreen() {
       en3: " belly button",
       ja3: "2.  (話し言葉)",
       en4: " umbilicus",
-      ja4: "3.  (医療)",
+      ja4: "3.  (医学用語)",
       comment:
-        "ネーブルオレンジの果頂部(へたと反対部分)とヘソが似ていたためにnavelと呼ばれるようになった",
+        "＊  ネーブルオレンジの果頂部(へたと反対部分)とヘソが似ていたためにnavelと呼ばれるようになった",
       pronounce: require("../../assets/sounds/navel.mp3"),
     },
     {
@@ -251,132 +260,151 @@ export function BabyBodyScreen() {
       en3: "2.  stomach",
       ja3: "",
       en4: "abdomen",
-      ja4: "3.  (解剖)",
+      ja4: " 3.  (解剖)",
       pronounce: require("../../assets/sounds/stomach.mp3"),
     },
     {
       en: "",
       ja: "腰",
-      en2: "1. waist",
+      en2: "1.  waist",
       ja2: "",
-      en3: "2. hip",
+      en3: "2.  hip",
       ja3: " ",
-      en4: "3. lower back",
+      en4: "3.  lower back",
       ja4: "",
       comment:
-        "1.  肋骨の下にあるくびれ  ,  2.  waist の下の張り出した部分 ,   3.「腰」の位置に絞った表現",
+        "1.  肋骨の下にあるくびれ                                                      2.  waist の下の張り出した部分                                             3.「腰」の位置に絞った表現                                                 ＊「股関節」は英語で hip joint ",
       pronounce: require("../../assets/sounds/waist.mp3"),
     },
     {
       en: "",
       ja: "お尻",
-      en2: "buttocks",
-      ja2: "(フォーマル)",
-      en3: "bottom",
-      ja3: "(フォーマル)",
-      en4: "backside",
-      ja4: "(インフォーマル)",
-      pronounce: require("../../assets/sounds/buttocks.mp3"),
+      en2: "1. buttocks",
+      ja2: "",
+      en3: "2. bottom",
+      ja3: "",
+      en4: "3. backside",
+      ja4: "",
+      // pronounce: require("../../assets/sounds/buttocks.mp3"),
+    },
+    {
+      en: "",
+      ja: "鼠径部",
+      en2: "1. inguinal region",
+      ja2: "",
+      en3: "2. groin",
+      ja3: "",
+      en4: "",
+      ja4: "",
+      comment: "＊  inguinal = 鼠径部の , region = 部位   ",
+      // pronounce: require("../../assets/sounds/39574744206.mp3"),
+    },
+    {
+      en: "  leg",
+      ja: "脚(下肢)",
+      en2: "  lower leg",
+      ja2: "下腿",
+      en3:
+        "                                            restless legs syndrome：RLS",
+      ja3: "むずむず脚症候群",
+      en4: "",
+      ja4: "",
+      comment: "restless = そわそわした , 休めない  syndrome = 症候群",
+      // pronounce: require("../../assets/sounds/39574744206.mp3"),
+    },
+    {
+      en: "thigh",
+      ja: "太もも",
+      en2: "",
+      ja2: "大腿骨",
+      en3: "1. thigh bone",
+      ja3: "",
+      en4: "2. femur (医学用語)",
+      ja4: "",
+      // pronounce: require("../../assets/sounds/39574744206.mp3"),
     },
     {
       en: "knee",
       ja: "膝",
       en2: "",
-      ja2: "",
-      en3: "",
+      ja2: "膝蓋骨",
+      en3: "1. knee cap",
       ja3: "",
-      en4: "",
+      en4: "2. patella(解剖)",
       ja4: "",
       // pronounce: require("../../assets/sounds/39574744589.mp3"),
     },
     {
-      en: "ankle",
-      ja: "くるぶし",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
+      en: "",
+      ja: "",
+      en2: "shin",
+      ja2: "すね",
+      en3: "calf",
+      ja3: "ふくらはぎ",
+      en4: "ankle",
+      ja4: "くるぶし",
       // pronounce: require("../../assets/sounds/39574744761.mp3"),
     },
     {
-      en: "neck",
-      ja: "首",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
+      en: "foot",
+      ja: "足",
+      en2: " instep  /  the top of the foot",
+      ja2: "足の甲",
+      en3: "sole  /  the bottom of the foot",
+      ja3: "足の甲",
+      en4: "athlete's foot",
+      ja4: "水虫",
+      comment:
+        "＊  footの複数形は feet                                                       「アスリートに水虫が多い」という理由からathlete's footと言うようになった ",
       // pronounce: require("../../assets/sounds/39574744800.mp3"),
     },
     {
-      en: "arm",
-      ja: "腕",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
+      en: "",
+      ja: "",
+      en2: "Achilles tendon",
+      ja2: "アキレス腱",
+      en3: "heel",
+      ja3: "かかと",
+      en4: "arch",
+      ja4: "土踏まず",
+      comment:
+        " ＊  tendon = 腱                                                             Achilles tendon はギリシャ神話の英雄アキレスに由来する                                Achilles’ heel で 「唯一の弱点」という意味がある",
       // pronounce: require("../../assets/sounds/39574744806.mp3"),
     },
     {
-      en: "",
-      ja: "",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
+      en: "toe",
+      ja: "足の指",
+      en2: "toes",
+      ja2: "つま先",
+      en3: "big toe / first toe",
+      ja3: "足の親指",
+      en4: "second toe ",
+      ja4: "足の人差し指",
       // pronounce: require("../../assets/sounds/39574744206.mp3"),
     },
     {
       en: "",
       ja: "",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
+      en2: "third toe ",
+      ja2: "足の中指",
+      en3: "fourth toe ",
+      ja3: "足の薬指",
+      en4: "little toe / fifth toe",
+      ja4: "足の小指",
       // pronounce: require("../../assets/sounds/39574744206.mp3"),
     },
-    {
-      en: "",
-      ja: "",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
-      // pronounce: require("../../assets/sounds/39574744206.mp3"),
-    },
-    {
-      en: "",
-      ja: "",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
-      // pronounce: require("../../assets/sounds/39574744206.mp3"),
-    },
-    {
-      en: "",
-      ja: "",
-      en2: "",
-      ja2: "",
-      en3: "",
-      ja3: "",
-      en4: "",
-      ja4: "",
-      // pronounce: require("../../assets/sounds/39574744206.mp3"),
-    },
+    // {
+    //   en: "",
+    //   ja: "",
+    //   en2: "",
+    //   ja2: "",
+    //   en3: "",
+    //   ja3: "",
+    //   en4: "",
+    //   ja4: "",
+    //   // pronounce: require("../../assets/sounds/39574744206.mp3"),
+    // },
+    
   ];
 
   //  const playSound = async () => {
@@ -473,6 +501,15 @@ export function BabyBodyScreen() {
               toBaby();
             }}
           />
+          <Image
+            source={warmUp}
+            style={{
+              marginTop: 30,
+              width: 100,
+              height: 100,
+              resizeMode: "contain",
+            }}
+          />
           <Text style={styles.title}>{bodyList[0].courseText}</Text>
           <FlatList
             data={bodyList}
@@ -486,7 +523,7 @@ export function BabyBodyScreen() {
                   {item.item.ja2} {item.item.en2}
                 </Text>
                 <Text style={styles.item3}>
-                    {item.item.ja3} {item.item.en3}            
+                  {item.item.ja3} {item.item.en3}
                 </Text>
                 <Text style={styles.item4}>
                   {/* {"\n"} */}
