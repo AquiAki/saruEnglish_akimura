@@ -21,6 +21,7 @@ import { Audio } from "expo-av";
 import { Asset } from "expo-asset";
 
 import warmUp from "../../assets/warmUp.png";
+import warmEnd from "../../assets/babyWarmEnd.png";
 import { url } from "inspector";
 import { Item } from "native-base";
 
@@ -40,16 +41,16 @@ export function BabyBodyScreen() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const bodyList = [
     {
-      courseText: "ベイビーコース【身体編】",
+      courseText: "まずはウォームアップだっ！",
       en: " head",
       ja: "頭",
-      en2: " the back of the head",
-      ja2: "後頭部",
+      en2: " forehead",
+      ja2: "おでこ",
       en3: " headache",
       ja3: "頭痛",
-      en4: " forehead",
-      ja4: "おでこ",
-      comment: " ＊  ache = 痛み  ,  fore = 前の ",
+      en4: " the back of the head",
+      ja4: "後頭部",
+      comment: " ＊    fore = 前の  ,  ache = 痛み  ",
       pronounce: require("../../assets/sounds/headache.mp3"),
     },
     {
@@ -80,10 +81,14 @@ export function BabyBodyScreen() {
     {
       en: "  temple",
       ja: "こめかみ",
-      en2: "My temples are throbbing",
-      en3: "こめかみがズキズキする",
+      en2: "Temporal",
+      ja2: "こめかみの",
+      en3: "Temporal bone",
+      ja3: "側頭骨",
+      en4: "      My temples are throbbing",
+      ja4: "こめかみがズキズキする",
       comment: "＊ throbbing = 拍動性の 、(痛みが)ズキズキする ",
-      pronounce: require("../../assets/sounds/temple.mp3"),
+      // pronounce: require("../../assets/sounds/temple.mp3"),
     },
     {
       en: " ear",
@@ -103,9 +108,9 @@ export function BabyBodyScreen() {
       ja2: "顔の",
       en3: " facial nerve",
       ja3: "顔面神経",
-      en4: "",
-      ja4: "",
-      comment: "＊ nerve = 神経",
+      en4: "mask-like face",
+      ja4: "仮面様顔貌",
+      comment: "＊ nerve = 神経  ,  like = のような",
       // pronounce: require("../../assets/sounds/facial.mp3"),
     },
     {
@@ -123,10 +128,10 @@ export function BabyBodyScreen() {
     {
       en: "  mouth",
       ja: "口",
-      en2: "mouthpiece",
-      ja2: "マウスピース",
-      en3: "mouth ulcer",
-      ja3: "口内炎",
+      en2: "mouth ulcer",
+      ja2: "口内炎",
+      en3: "mouthpiece",
+      ja3: "マウスピース",
       en4: "the corner of the mouth",
       ja4: "口角",
       comment: "＊ ulcer = 潰瘍",
@@ -273,7 +278,7 @@ export function BabyBodyScreen() {
       en4: "3.  lower back",
       ja4: "",
       comment:
-        "1.  肋骨の下にあるくびれ                                                      2.  waist の下の張り出した部分                                             3.「腰」の位置に絞った表現                                                 ＊「股関節」は英語で hip joint ",
+        "1.  肋骨の下にあるくびれ                                                      2.  waist の下の張り出した部分                                             3.「腰」の位置に絞った表現  ",
       pronounce: require("../../assets/sounds/waist.mp3"),
     },
     {
@@ -309,7 +314,7 @@ export function BabyBodyScreen() {
       ja3: "むずむず脚症候群",
       en4: "",
       ja4: "",
-      comment: "restless = そわそわした , 休めない  syndrome = 症候群",
+      comment: "restless = そわそわした、休めない , syndrome = 症候群",
       // pronounce: require("../../assets/sounds/39574744206.mp3"),
     },
     {
@@ -348,12 +353,12 @@ export function BabyBodyScreen() {
     {
       en: "foot",
       ja: "足",
-      en2: " instep  /  the top of the foot",
-      ja2: "足の甲",
-      en3: "sole  /  the bottom of the foot",
-      ja3: "足の甲",
-      en4: "athlete's foot",
-      ja4: "水虫",
+      en2: "athlete's foot ",
+      ja2: "水虫",
+      en3: "sole /                                  the bottom of the foot",
+      ja3: "足の裏",
+      en4: "instep  /                               the top of the foot",
+      ja4: "足の甲",
       comment:
         "＊  footの複数形は feet                                                       「アスリートに水虫が多い」という理由からathlete's footと言うようになった ",
       // pronounce: require("../../assets/sounds/39574744800.mp3"),
@@ -361,12 +366,12 @@ export function BabyBodyScreen() {
     {
       en: "",
       ja: "",
-      en2: "Achilles tendon",
-      ja2: "アキレス腱",
+      en2: "arch",
+      ja2: "土踏まず",
       en3: "heel",
       ja3: "かかと",
-      en4: "arch",
-      ja4: "土踏まず",
+      en4: "Achilles tendon ",
+      ja4: "アキレス腱",
       comment:
         " ＊  tendon = 腱                                                             Achilles tendon はギリシャ神話の英雄アキレスに由来する                                Achilles’ heel で 「唯一の弱点」という意味がある",
       // pronounce: require("../../assets/sounds/39574744806.mp3"),
@@ -404,7 +409,6 @@ export function BabyBodyScreen() {
     //   ja4: "",
     //   // pronounce: require("../../assets/sounds/39574744206.mp3"),
     // },
-    
   ];
 
   //  const playSound = async () => {
@@ -510,6 +514,7 @@ export function BabyBodyScreen() {
               resizeMode: "contain",
             }}
           />
+
           <Text style={styles.title}>{bodyList[0].courseText}</Text>
           <FlatList
             data={bodyList}
@@ -548,19 +553,25 @@ export function BabyBodyScreen() {
                     playSound(item.index);
                   }}
                 />
-
-                {/* <FAB
-                  style={styles.addButton3}
-                  icon="play-circle"
-                  onPress={() => {
-                    playSound3(item.index);
-                  }}
-                /> */}
               </View>
             )}
           />
 
           <StatusBar style="auto" />
+
+          <Text style={styles.lastMess}>
+            お疲れ様です、ウォームアップは終了！
+          </Text>
+          <Image
+            source={warmEnd}
+            style={{
+              marginTop: 30,
+              width: 100,
+              height: 100,
+              resizeMode: "contain",
+            }}
+          />
+          <Text style={styles.space}></Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -580,7 +591,7 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    color: "black",
+    color: "#000077",
     minWidth: "80%",
     flexDirection: "column",
     borderWidth: 2,
@@ -593,8 +604,8 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: "absolute",
-    right: 16,
-    bottom: 180,
+    right: 14,
+    bottom: 220,
   },
   item2: {
     margin: 25,
@@ -615,4 +626,13 @@ const styles = StyleSheet.create({
     margin: 13,
   },
   item6: {},
+  lastMess: {
+    borderWidth: 1,
+    borderColor: "pink",
+    width: 400,
+    textAlign: "center",
+  },
+  space: {
+    marginBottom: 50,
+  },
 });

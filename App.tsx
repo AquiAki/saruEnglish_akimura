@@ -36,7 +36,7 @@ export default function App() {
     
     <NavigationContainer>
       
-      <Stack.Navigator initialRouteName="BabyBody">
+      <Stack.Navigator initialRouteName="BabyQuiz">
         <Stack.Screen
           name="Baby"
           component={BabyScreen}
