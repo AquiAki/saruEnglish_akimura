@@ -78,7 +78,7 @@ export function SignupScreen() {
 
         <View style={styles.includeButton1}>
           <Button
-            title="登録する"
+            title="登録"
             color="white"
             onPress={() => {
               pressedSubmit(email, password);
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
   },
 
   includeButton1: {
+    width:80,
     marginVertical: 10,
     borderRadius: 10,
     backgroundColor: "#8B4513",

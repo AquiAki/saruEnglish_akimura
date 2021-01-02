@@ -499,12 +499,15 @@ export function BabyBodyScreen() {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
-          <Button
-            title="Back"
-            onPress={() => {
-              toBaby();
-            }}
-          />
+          <View style={styles.backHome}>
+            <Button
+              color="white"
+              title="ホームへ戻る"
+              onPress={() => {
+                toBaby();
+              }}
+            />
+          </View>
           <Image
             source={warmUp}
             style={{
@@ -572,6 +575,15 @@ export function BabyBodyScreen() {
             }}
           />
           <Text style={styles.space}></Text>
+          <View style={styles.backHome}>
+            <Button
+              color="white"
+              title="ホームへ戻る"
+              onPress={() => {
+                toBaby();
+              }}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -584,7 +596,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
+  backHome:{
+    margin:30,
+    borderWidth:2,
+    borderRadius:10,
+    borderColor:"white",
+    backgroundColor:"gray",
+  },
   title: {
     textAlign: "center",
     lineHeight: 50,
