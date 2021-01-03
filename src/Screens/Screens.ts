@@ -4,7 +4,7 @@ export * from "./LevelScreen";
 export * from "./BabyScreen";
 export * from "./BabyQuizScreen";
 export * from "./BabyBodyScreen";
-export * from "./BabySymptomsScreen";
+export * from "./BabyAnatomyScreen";
 export * from "./BabyTestScreen";
 export * from "./BabyDiseaseScreen";
 export * from "./BabyOtherScreen";

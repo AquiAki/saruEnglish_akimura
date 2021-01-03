@@ -122,7 +122,7 @@ export function BabyScreen() {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("BabySymptoms");
+            navigation.navigate("BabyAnatomy");
           }}
         >
           <Text style={styles.course}>Anatomy</Text>

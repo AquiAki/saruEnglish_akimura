@@ -7,7 +7,7 @@ import {
   BabyScreen,
   BabyQuizScreen,
   BabyBodyScreen,
-  BabySymptomsScreen,
+  BabyAnatomyScreen,
   BabyTestScreen,
   BabyDiseaseScreen,
   BabyOtherScreen,
@@ -27,7 +27,6 @@ import {
   LevelScreen,
   SigninScreen,
   SignupScreen,
-  
 } from "./src/Screens/Screens";
 import "./src/Fire";
 
@@ -53,8 +52,8 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="BabySymptoms"
-          component={BabySymptomsScreen}
+          name="BabyAnatomy"
+          component={BabyAnatomyScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
