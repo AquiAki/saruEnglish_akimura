@@ -85,7 +85,7 @@ export function BabyBodyScreen() {
       ja2: "こめかみの",
       en3: "Temporal bone",
       ja3: "側頭骨",
-      en4: "      My temples are throbbing",
+      en4: "        My temples are throbbing",
       ja4: "こめかみがズキズキする",
       comment: "＊ throbbing = 拍動性の 、(痛みが)ズキズキする ",
       // pronounce: require("../../assets/sounds/temple.mp3"),
@@ -454,7 +454,6 @@ export function BabyBodyScreen() {
       const newSound1 = new Audio.Sound();
       const sound1Asset = await Asset.fromModule(bodyList[index].pronounce);
       await newSound1.loadAsync(sound1Asset);
-
       newSound1.playAsync();
 
       // 準備完了

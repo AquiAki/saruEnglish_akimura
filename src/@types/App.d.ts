@@ -12,6 +12,7 @@ type RootStackParamList = {
   BabyTest: undifined;
   BabyDisease: undifined;
   BabyOther: undifined;
+  BabyListening: undifined;
   Young: undifined;
   YoungQuiz: undifined;
   YoungVoc: undifined;

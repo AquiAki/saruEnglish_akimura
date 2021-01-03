@@ -8,7 +8,7 @@ export * from "./BabySymptomsScreen";
 export * from "./BabyTestScreen";
 export * from "./BabyDiseaseScreen";
 export * from "./BabyOtherScreen";
-
+export * from "./BabyListeningScreen";
 export * from "./YoungScreen";
 export * from "./YoungQuizScreen";
 export * from "./YoungVocScreen";

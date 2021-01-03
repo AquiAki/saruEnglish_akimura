@@ -11,6 +11,7 @@ import {
   BabyTestScreen,
   BabyDiseaseScreen,
   BabyOtherScreen,
+  BabyListeningScreen,
   YoungScreen,
   YoungQuizScreen,
   YoungVocScreen,
@@ -26,6 +27,7 @@ import {
   LevelScreen,
   SigninScreen,
   SignupScreen,
+  
 } from "./src/Screens/Screens";
 import "./src/Fire";
 
@@ -33,10 +35,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    
     <NavigationContainer>
-      
-      <Stack.Navigator initialRouteName="BabyQuiz">
+      <Stack.Navigator initialRouteName="Baby">
         <Stack.Screen
           name="Baby"
           component={BabyScreen}
@@ -70,6 +70,11 @@ export default function App() {
         <Stack.Screen
           name="BabyOther"
           component={BabyOtherScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="BabyListening"
+          component={BabyListeningScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

@@ -75,9 +75,9 @@ export function BabyScreen() {
 
 
   return (
+    <View style={styles.container}>
       <ScrollView>
-        <View style={styles.container}>
-          {/* <Container style={styles.header}>
+        {/* <Container style={styles.header}>
           <Header>
             <TouchableOpacity
               onPress={() => {
@@ -90,106 +90,113 @@ export function BabyScreen() {
           </Header>
         </Container> */}
 
-          <Image
-            source={babyLetter}
-            style={{
-              marginTop:30,
-              width: 100,
-              height: 100,
-              resizeMode: "contain",
-            }}
-          />
-          <Text>【ようこそ、ベイビーコースへ】</Text>
-          <Image
-            source={babyPic}
-            style={{
-              width: 200,
-              height: 200,
-              resizeMode: "contain",
-            }}
-          />
+        <Image
+          source={babyLetter}
+          style={{
+            marginTop: 40,
+            width: 100,
+            height: 100,
+            marginLeft: 150,
+            resizeMode: "contain",
+          }}
+        />
+        <Text style={styles.text}>【ようこそ、ベイビーコースへ】</Text>
+        <Image
+          source={babyPic}
+          style={{
+            marginLeft: 120,
+            width: 150,
+            height: 150,
+            resizeMode: "contain",
+            alignItems: "center",
+          }}
+        />
 
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("BabyBody");
-            }}
-          >
-            <Text style={styles.course}>ベイビーコースの「身体」</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("BabyBody");
+          }}
+        >
+          <Text style={styles.course}>Basic</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("BabySymptoms");
-            }}
-          >
-            <Text style={styles.course}>ベイビーコースの「症状」</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("BabySymptoms");
+          }}
+        >
+          <Text style={styles.course}>Anatomy</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("BabyTest");
-            }}
-          >
-            <Text style={styles.course}>ベイビーコースの「検査と薬」</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("BabyTest");
+          }}
+        >
+          <Text style={styles.course}>ベイビーコースの「検査と薬」</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("BabyDisease");
-            }}
-          >
-            <Text style={styles.course}>ベイビーコースの「病名」</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("BabyDisease");
+          }}
+        >
+          <Text style={styles.course}>ベイビーコースの「病名」</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("BabyOther");
-            }}
-          >
-            <Text style={styles.course}>ベイビーコースの「その他」</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("BabyOther");
+          }}
+        >
+          <Text style={styles.course}>ベイビーコースの「その他」</Text>
+        </TouchableOpacity>
 
-          <Text>
-            {"\n"}
-            {"\n"}
-            {"\n"}
-            {"\n"}
-            {"\n"}
-            【5つのコースを覚えたらレベルチェックをうけてください】
-          </Text>
+        <Text>
+          {"\n"}
+          {"\n"}
+          {"\n"}
+          {"\n"}
+          {"\n"}
+          【5つのコースを覚えたらレベルチェックをうけてください】
+        </Text>
 
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("BabyQuiz");
-            }}
-          >
-            <Text style={styles.course}>レベルチェックを受ける</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("BabyQuiz");
+          }}
+        >
+          <Text style={styles.course}>レベルチェックを受ける</Text>
+        </TouchableOpacity>
 
-          <StatusBar style="auto" />
-        </View>
+        <StatusBar style="auto" />
       </ScrollView>
-    
+    </View>
   );
         }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
     backgroundColor: "#FFEEFF",
     alignItems: "center",
+    textAlign: "center",
     justifyContent: "center",
   },
   // header: {
   //   width: 400,
   // },
-  title: {
-    color: "#FF00FF",
-    marginBottom: 50,
-    fontSize: 30,
+  text: {
+    color: "black",
+    textAlign: "center",
+    marginBottom: 0,
+    fontSize: 15,
+    
   },
   course: {
-    padding: 10,
+    marginLeft:50,
+    padding: 15,
     marginBottom: 15,
     borderColor: "gray",
     borderWidth: 2,

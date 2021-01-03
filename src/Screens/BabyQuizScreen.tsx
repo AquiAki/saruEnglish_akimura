@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState,useEffect,useRef} from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button,Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Audio } from "expo-av";
 import { Asset } from "expo-asset";
@@ -65,12 +65,14 @@ export function BabyQuizScreen() {
       setCurrentQuestion(nextQuestion);
     } else {
       if (score + 1 === questions.length) {
-        alert(`満点でしたので、次のステージに昇格です！`);
+        Alert.alert(`満点です！
+        次はリスニング問題
+        マナーモードをオフにしてください`);
         setScore(0);
         setCurrentQuestion(0);
-        navigation.navigate("Young");
+        navigation.navigate("BabyListening");
       } else {
-        alert(`満点を取れるまで頑張りましょう！！`);
+        Alert.alert(`満点を取れるまで頑張りましょう！！`);
         setScore(0);
         setCurrentQuestion(0);
         navigation.navigate("Baby");
@@ -131,10 +133,10 @@ export function BabyQuizScreen() {
       ],
     },
     {
-      questionText: "鼻が詰まる",
+      questionText: "鼻水がでる",
       answerOptions: [
-        { answerText: "have a runny nose", isCorrect: false },
-        { answerText: "have a stuffy nose ", isCorrect: true },
+        { answerText: "have a runny nose", isCorrect: true },
+        { answerText: "have a stuffy nose ", isCorrect: false },
         { answerText: "nosebleed", isCorrect: false },
         { answerText: "nose", isCorrect: false },
       ],
@@ -419,9 +421,7 @@ export function BabyQuizScreen() {
         /> */}
       {/* </View> */}
 
-      <Text style={styles.title}>
-        ベイビーコースのクイズ : {currentQuestion + 1}問目
-      </Text>
+      <Text style={styles.title}>Vocabulary : {currentQuestion + 1}問目</Text>
       <Text style={styles.question}>
         {"\n"}
         {questions[currentQuestion].questionText}
@@ -524,13 +524,6 @@ const styles = StyleSheet.create({
   //   borderRadius: 15,
   //   backgroundColor: "green",
   // },
-  label: {
-    fontSize: 18,
-    color: "black",
-    position: "absolute",
-    zIndex: 1,
-    alignSelf: "center",
-  },
 
   // progressBar: {
   //   height: 20,
@@ -556,6 +549,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 10,
+    color: "#770000",
   },
   question: {
     fontSize: 30,
